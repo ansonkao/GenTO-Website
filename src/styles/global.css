@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+/* ── Custom theme tokens ── */
+@theme {
+  --color-neon-pink: #ff2d78;
+  --color-neon-yellow: #f0e130;
+  --color-neon-blue: #5ce5ff;
+  --font-family-display: system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Space Mono", monospace;
+}
+
+/* ── Grid system variables ── */
+:root {
+  --container-max: 1120px;
+  --container-padding: 24px;
+}
+@media (min-width: 768px) {
+  :root { --container-padding: 40px; }
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+body {
+  background: #050508;
+  color: #e0e0e0;
+  font-family: var(--font-family-display);
+  overflow-x: hidden;
+}
+
+/* =============================================
+   GRID LINE SYSTEM
+   - "rail" = subtle, full-page / far-reach lines
+   - "border" = bright white + glow, immediate content frames
+   ============================================= */
+
+/* Full-page vertical rails */
+.rail-v {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 3px 0 rgba(255, 255, 255, 0.33);
+}
+
+/* Rail-intensity horizontal line (matches rail-v) */
+.rail-h {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 3px 0 rgba(255, 255, 255, 0.33);
+}
+
+/* Bright border — horizontal (content boundaries) */
+.border-h {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 3px 0 rgba(255, 255, 255, 0.33);
+}
+
+/* Bright border — vertical (content boundaries) */
+.border-v {
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 3px 0 rgba(255, 255, 255, 0.33);
+}
+
+/* =============================================
+   SPACER — auto horizontal rails top + bottom
+   ============================================= */
+.spacer {
+  position: relative;
+}
+.spacer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 3px 0 rgba(255, 255, 255, 0.33);
+}
+
+/* =============================================
+   CARD GROUP WRAPPER — outer glow around the whole set
+   ============================================= */
+.card-group-glow {
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* =============================================
+   PILLAR CARDS
+   -1px margins to overlap with grid lines.
+   Own border + glow replaces the structural lines.
+   ============================================= */
+.pillar-card {
+  --mx: 50%;
+  --my: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.1);
+  /* -1px top/bottom + between siblings to collapse borders */
+  margin: -1px -1px -1px 0;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+/* Desktop: all cards margin-left 0. Right margin -1px to collapse
+   with the next sibling's left border. Last card: margin-right 0. */
+@media (min-width: 768px) {
+  .pillar-card { margin: -1px -1px -1px 0; }
+  .pillar-card:last-child { margin-right: 0; }
+}
+
+/* On mobile (stacked), collapse between siblings + overlap section lines */
+@media (max-width: 767px) {
+  .pillar-card {
+    margin: -1px 0 0 0;
+  }
+  .pillar-card:first-child {
+    margin-top: -1px;
+  }
+  .pillar-card:last-child {
+    margin-bottom: -1px;
+  }
+}
+
+/* =============================================
+   BLOG POST CARDS — same border + glow as pillars
+   ============================================= */
+.post-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.1);
+  /* Collapse top border with sibling above; left/right stay flush */
+  margin: -1px 0 0 0;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.post-card:first-child {
+  margin-top: -1px;
+}
+.post-card:last-child {
+  margin-bottom: -1px;
+}
+
+.post-card {
+  --mx: 50%;
+  --my: 50%;
+  background:
+    radial-gradient(circle 600px at var(--mx) var(--my), rgba(255,255,255,0.06), transparent),
+    linear-gradient(172deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.02) 100%);
+}
+
+.post-card:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background:
+    radial-gradient(circle 600px at var(--mx) var(--my), rgba(255,255,255,0.14), transparent),
+    linear-gradient(172deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.04) 100%);
+  box-shadow: 0 0 20px 0 rgba(255,255,255,0.1), inset 0 0 40px rgba(255,255,255,0.05);
+  animation: panel-flicker 0.3s ease-in-out;
+}
+
+/* =============================================
+   PANEL BACKGROUNDS (LCARS screens)
+   Default = previous hover intensity.
+   Hover = 2x that. Flicker = 0.3s chaotic.
+   ============================================= */
+.panel-pink {
+  background:
+    radial-gradient(circle 250px at var(--mx) var(--my), rgba(255,45,120,0.12), transparent),
+    linear-gradient(135deg, rgba(255,45,120,0.22) 0%, rgba(255,45,120,0.10) 100%);
+}
+.panel-yellow {
+  background:
+    radial-gradient(circle 250px at var(--mx) var(--my), rgba(240,225,48,0.10), transparent),
+    linear-gradient(135deg, rgba(240,225,48,0.20) 0%, rgba(240,225,48,0.08) 100%);
+}
+.panel-blue {
+  background:
+    radial-gradient(circle 250px at var(--mx) var(--my), rgba(92,229,255,0.12), transparent),
+    linear-gradient(135deg, rgba(92,229,255,0.22) 0%, rgba(92,229,255,0.10) 100%);
+}
+
+/* Panel hover: 2x intensity + longer chaotic flicker */
+.panel-pink:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background:
+    radial-gradient(circle 250px at var(--mx) var(--my), rgba(255,45,120,0.25), transparent),
+    linear-gradient(135deg, rgba(255,45,120,0.44) 0%, rgba(255,45,120,0.20) 100%);
+  box-shadow: 0 0 20px 0 rgba(255,255,255,0.1), inset 0 0 60px rgba(255,45,120,0.15), 0 0 50px rgba(255,45,120,0.10);
+  animation: panel-flicker 0.3s ease-in-out;
+}
+.panel-yellow:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background:
+    radial-gradient(circle 250px at var(--mx) var(--my), rgba(240,225,48,0.20), transparent),
+    linear-gradient(135deg, rgba(240,225,48,0.40) 0%, rgba(240,225,48,0.16) 100%);
+  box-shadow: 0 0 20px 0 rgba(255,255,255,0.1), inset 0 0 60px rgba(240,225,48,0.12), 0 0 50px rgba(240,225,48,0.08);
+  animation: panel-flicker 0.3s ease-in-out;
+}
+.panel-blue:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background:
+    radial-gradient(circle 250px at var(--mx) var(--my), rgba(92,229,255,0.25), transparent),
+    linear-gradient(135deg, rgba(92,229,255,0.44) 0%, rgba(92,229,255,0.20) 100%);
+  box-shadow: 0 0 20px 0 rgba(255,255,255,0.1), inset 0 0 60px rgba(92,229,255,0.15), 0 0 50px rgba(92,229,255,0.10);
+  animation: panel-flicker 0.3s ease-in-out;
+}
+
+@keyframes panel-flicker {
+  0%   { opacity: 1; }
+  10%  { opacity: 0.75; }
+  20%  { opacity: 0.95; }
+  35%  { opacity: 0.70; }
+  45%  { opacity: 1; }
+  55%  { opacity: 0.80; }
+  70%  { opacity: 1; }
+  80%  { opacity: 0.88; }
+  90%  { opacity: 0.96; }
+  100% { opacity: 1; }
+}
+
+/* =============================================
+   PILLAR H3 HOVER — brighter + text glow
+   ============================================= */
+.pillar-title {
+  transition: color 0.3s, text-shadow 0.3s, filter 0.3s;
+}
+
+.panel-pink:hover .pillar-title {
+  color: #ff8ab4;
+  text-shadow: 0 0 8px rgba(255,45,120,0.5), 0 0 20px rgba(255,45,120,0.25), 0 0 40px rgba(255,255,255,0.1);
+  animation: text-flicker 0.3s ease-in-out;
+}
+.panel-yellow:hover .pillar-title {
+  color: #f5ed7a;
+  text-shadow: 0 0 8px rgba(240,225,48,0.5), 0 0 20px rgba(240,225,48,0.25), 0 0 40px rgba(255,255,255,0.1);
+  animation: text-flicker 0.3s ease-in-out;
+}
+.panel-blue:hover .pillar-title {
+  color: #a8efff;
+  text-shadow: 0 0 8px rgba(92,229,255,0.5), 0 0 20px rgba(92,229,255,0.25), 0 0 40px rgba(255,255,255,0.1);
+  animation: text-flicker 0.3s ease-in-out;
+}
+
+@keyframes text-flicker {
+  0%   { opacity: 1; }
+  15%  { opacity: 0.80; }
+  30%  { opacity: 1; }
+  50%  { opacity: 0.85; }
+  70%  { opacity: 1; }
+  85%  { opacity: 0.90; }
+  100% { opacity: 1; }
+}
+
+/* =============================================
+   SCAN LINES
+   ============================================= */
+.scanlines {
+  --hero-mx: 50%;
+  --hero-my: 50%;
+}
+
+/* Mouse-tracking spotlight */
+.scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 400px at var(--hero-mx) var(--hero-my),
+    rgba(255,255,255,0.06),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 5;
+  transition: background 0.1s ease;
+}
+
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* =============================================
+   TEXT GLOWS (logo)
+   ============================================= */
+.text-glow-pink {
+  text-shadow: 0 0 12px rgba(255,45,120,0.6), 0 0 40px rgba(255,45,120,0.2);
+}
+.text-glow-blue {
+  text-shadow: 0 0 12px rgba(92,229,255,0.6), 0 0 40px rgba(92,229,255,0.2);
+}
+
+/* =============================================
+   VIDEO OVERLAY
+   ============================================= */
+.hero-video-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(5,5,8,0.95) 0%,
+    rgba(5,5,8,0.5) 20%,
+    rgba(5,5,8,0.2) 50%,
+    rgba(5,5,8,0.5) 80%,
+    rgba(5,5,8,0.95) 100%
+  );
+}
+
+/* =============================================
+   ARROW LINK
+   ============================================= */
+.arrow-link {
+  transition: transform 0.2s, color 0.2s;
+}
+.arrow-link:hover {
+  transform: translateX(4px);
+}

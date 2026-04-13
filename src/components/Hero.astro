@@ -1,0 +1,36 @@
+---
+/**
+ * Compact left-aligned hero. Together with Pillars, fills ~90% of the first fold.
+ * Padded away from the vertical rails.
+ */
+---
+
+<section class="relative overflow-hidden scanlines" style="min-height: calc(90vh - 180px);">
+  <!-- Video background -->
+  <div class="absolute inset-0 z-0">
+    <video
+      class="h-full w-full object-cover opacity-50"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/placeholder-hero.jpg"
+    >
+      <source src="https://s1hneayfji74zvca.public.blob.vercel-storage.com/hotpot-sizzle-reel.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video-overlay absolute inset-0"></div>
+  </div>
+
+  <!-- Content — left aligned, pushed to bottom, padded from rails -->
+  <div class="relative z-20 max-w-[var(--container-max)] mx-auto px-[var(--container-padding)] flex items-end" style="min-height: calc(90vh - 180px);">
+    <div class="pb-14 md:pb-20 pl-4 md:pl-6">
+      <!-- Logo -->
+      <img src="/logo.svg" alt="GenTO" class="h-20 md:h-[120px] w-auto mb-3" />
+
+      <!-- Tagline -->
+      <p class="text-lg md:text-xl text-white/60 font-light tracking-wide max-w-md">
+        Toronto's premiere stage for AI&#8209;forward storytelling
+      </p>
+    </div>
+  </div>
+</section>

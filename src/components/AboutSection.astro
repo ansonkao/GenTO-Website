@@ -1,0 +1,114 @@
+---
+/**
+ * "Who We Are" section — mission statement with left title + right blurb + Embla photo carousel.
+ */
+
+// Unsplash photos of groups of people / community events
+const photos = [
+  { src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop", alt: "Group of friends laughing together" },
+  { src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop", alt: "Community event gathering" },
+  { src: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop", alt: "People collaborating at a table" },
+  { src: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&h=400&fit=crop", alt: "Audience at a creative event" },
+  { src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop", alt: "Conference crowd networking" },
+  { src: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=600&h=400&fit=crop", alt: "Friends celebrating together" },
+  { src: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&h=400&fit=crop", alt: "Group at a social gathering" },
+  { src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop", alt: "People at a meetup event" },
+  { src: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop", alt: "Team working together" },
+  { src: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&h=400&fit=crop", alt: "Group of people at outdoor event" },
+];
+---
+
+<section class="relative">
+  <div class="max-w-[var(--container-max)] mx-auto px-[var(--container-padding)] pt-16 pb-8 md:pt-24 md:pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 pl-4 md:pl-6 pr-4 md:pr-6">
+      <!-- Left: title -->
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="h-[1px] w-12 bg-neon-blue"></div>
+          <span class="font-mono text-xs tracking-[0.4em] uppercase text-neon-blue">Who We Are</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-bold leading-[1.05] text-white" style="font-family: 'Playfair Display', Georgia, serif;">
+          A community for <span class="text-neon-yellow italic">audacious makers</span> & <span class="text-neon-pink italic">curious audiences.</span>
+        </h2>
+      </div>
+
+      <!-- Right: blurb -->
+      <div class="flex items-center">
+        <p class="text-base md:text-lg text-white/60 leading-relaxed font-light">
+          We're living at a special moment in time in the evolution of Cinema — Generative AI is levelling the playing field. For the first time in history, the individual filmmaker is empowered to tell stories with the same level of artistry as Hollywood powerhouses, on an international scale. This evolution is happening all over the world, including in our home town of Toronto, Canada. GenTO is a community for this movement.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo carousel -->
+  <div class="relative pt-0 pb-12 md:pb-20">
+    <div class="embla overflow-hidden" id="about-carousel">
+      <div class="embla__container flex">
+        {photos.map((photo) => (
+          <div class="embla__slide shrink-0 w-[280px] md:w-[360px] pl-4 first:pl-0">
+            <div class="h-[187px] md:h-[240px] overflow-hidden border border-white/10">
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button
+      class="embla__prev absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/60 border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-colors z-10"
+      aria-label="Previous"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+    <button
+      class="embla__next absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-black/60 border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-colors z-10"
+      aria-label="Next"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="border-h"></div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+
+  const node = document.getElementById('about-carousel');
+  if (node) {
+    const embla = EmblaCarousel(node, {
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+      dragFree: true,
+    });
+
+    // Auto-scroll
+    let autoplay: ReturnType<typeof setInterval>;
+    const startAutoplay = () => {
+      autoplay = setInterval(() => embla.scrollNext(), 3000);
+    };
+    const stopAutoplay = () => clearInterval(autoplay);
+
+    startAutoplay();
+    node.addEventListener('mouseenter', stopAutoplay);
+    node.addEventListener('mouseleave', startAutoplay);
+
+    // Nav buttons
+    const prev = document.querySelector('.embla__prev');
+    const next = document.querySelector('.embla__next');
+    prev?.addEventListener('click', () => { stopAutoplay(); embla.scrollPrev(); startAutoplay(); });
+    next?.addEventListener('click', () => { stopAutoplay(); embla.scrollNext(); startAutoplay(); });
+  }
+</script>

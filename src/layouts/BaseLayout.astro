@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Toronto's premiere stage for AI-forward storytelling" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen relative">
+    <!-- Full-page vertical rail lines at container edges -->
+    <div class="pointer-events-none fixed inset-0 z-50" aria-hidden="true">
+      <div class="relative h-full max-w-[var(--container-max)] mx-auto px-[var(--container-padding)]">
+        <!-- Left rail -->
+        <div class="absolute top-0 bottom-0 left-[var(--container-padding)] rail-v"></div>
+        <!-- Right rail -->
+        <div class="absolute top-0 bottom-0 right-[var(--container-padding)] rail-v"></div>
+      </div>
+    </div>
+
+    <slot />
+
+    <!-- Mouse-tracking spotlight for interactive cards -->
+    <script>
+      const cards = document.querySelectorAll<HTMLElement>('.pillar-card, .post-card');
+
+      cards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mx', `${x}%`);
+          card.style.setProperty('--my', `${y}%`);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.setProperty('--mx', '50%');
+          card.style.setProperty('--my', '50%');
+        });
+      });
+
+      // Hero scanlines spotlight
+      const hero = document.querySelector<HTMLElement>('.scanlines');
+      if (hero) {
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty('--hero-mx', `${x}%`);
+          hero.style.setProperty('--hero-my', `${y}%`);
+        });
+
+        hero.addEventListener('mouseleave', () => {
+          hero.style.setProperty('--hero-mx', '50%');
+          hero.style.setProperty('--hero-my', '50%');
+        });
+      }
+    </script>
+  </body>
+</html>

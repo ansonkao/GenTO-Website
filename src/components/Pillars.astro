@@ -1,0 +1,103 @@
+---
+const pillars = [
+  {
+    title: "Film Festival",
+    subtitle: "Dec 5, 2026",
+    href: "/festival",
+    color: "pink" as const,
+    cta: "Explore",
+  },
+  {
+    title: "Monthly Meetups",
+    subtitle: "Every month",
+    href: "/meetups",
+    color: "yellow" as const,
+    cta: "Explore",
+  },
+  {
+    title: "Online Community",
+    subtitle: "150+ Members",
+    href: "https://discord.gg/gento",
+    color: "blue" as const,
+    cta: "Join",
+    external: true,
+  },
+];
+
+const colorConfig = {
+  pink: {
+    panel: "panel-pink",
+    text: "text-neon-pink",
+    sub: "text-neon-pink/50",
+    cta: "text-white/50 group-hover:text-white",
+  },
+  yellow: {
+    panel: "panel-yellow",
+    text: "text-neon-yellow",
+    sub: "text-neon-yellow/50",
+    cta: "text-white/50 group-hover:text-white",
+  },
+  blue: {
+    panel: "panel-blue",
+    text: "text-neon-blue",
+    sub: "text-neon-blue/50",
+    cta: "text-white/50 group-hover:text-white",
+  },
+};
+---
+
+<section class="relative">
+  <!-- Top horizontal line — edge to edge -->
+  <div class="border-h"></div>
+
+  <!-- Pillars row: the grid sits inside the container content area.
+       Card -1px margins make their borders overlap the structural lines. -->
+  <div class="relative max-w-[var(--container-max)] mx-auto px-[var(--container-padding)]">
+    <!-- Structural vertical lines at container content edges and 1/3 splits -->
+    <div class="hidden md:block absolute inset-y-0 left-[var(--container-padding)]">
+      <div class="border-v h-full"></div>
+    </div>
+    <div class="hidden md:block absolute inset-y-0" style="left: calc(((100% - var(--container-padding) * 2) / 3) + var(--container-padding));">
+      <div class="border-v h-full"></div>
+    </div>
+    <div class="hidden md:block absolute inset-y-0" style="left: calc(((100% - var(--container-padding) * 2) / 3 * 2) + var(--container-padding));">
+      <div class="border-v h-full"></div>
+    </div>
+    <div class="hidden md:block absolute inset-y-0 right-[var(--container-padding)]">
+      <div class="border-v h-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 card-group-glow">
+      {pillars.map((pillar) => {
+        const c = colorConfig[pillar.color];
+        return (
+          <a
+            href={pillar.href}
+            target={pillar.external ? "_blank" : undefined}
+            rel={pillar.external ? "noopener noreferrer" : undefined}
+            class:list={[
+              "pillar-card group relative block px-6 py-7 md:px-8 md:py-9",
+              c.panel,
+            ]}
+          >
+            <h3 class:list={["pillar-title text-lg md:text-xl font-semibold tracking-wide mb-1", c.text]}>
+              {pillar.title}
+            </h3>
+            <p class:list={["text-xs font-mono tracking-widest uppercase", c.sub]}>
+              {pillar.subtitle}
+            </p>
+            <div class:list={[
+              "mt-4 text-sm font-mono arrow-link inline-flex items-center gap-2 transition-colors",
+              c.cta
+            ]}>
+              {pillar.cta} <span class="text-base">→</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Bottom horizontal line — edge to edge -->
+  <div class="border-h"></div>
+</section>
