@@ -1,0 +1,61 @@
+---
+import MergedLayout from "../../layouts/MergedLayout.astro";
+import SiteHeader from "../../components/merged/SiteHeader.astro";
+import SiteFooter from "../../components/merged/SiteFooter.astro";
+import "../../styles/merged.css";
+
+const post = {
+  title: "We're LIVE! Now accepting submissions.",
+  date: "May 1, 2026",
+  author: "Community",
+  read: "1 min",
+};
+---
+
+<MergedLayout title={`${post.title} — GenTO`}>
+  <SiteHeader active="updates" />
+
+  <article style="padding-top:160px;padding-bottom:120px;">
+    <div class="container" style="max-width:780px;padding:0 40px;">
+      <!-- Meta -->
+      <div style="display:flex;gap:16px;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:24px;">
+        <span style="color:var(--magenta);">Dispatch</span>
+        <span>·</span>
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.read}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-display);font-size:clamp(36px,5vw,56px);letter-spacing:-0.025em;font-weight:500;line-height:1.1;margin-bottom:48px;">
+        {post.title}
+      </h1>
+
+      <!-- Body -->
+      <div style="font-size:18px;line-height:1.75;color:var(--ink-dim);">
+        <p>
+          GenTO is officially live — and we're now accepting submissions for the inaugural Toronto AI Film Festival.
+        </p>
+
+        <p style="margin-top:24px;">
+          If you're a filmmaker, artist, or creative experimenting with AI-enhanced storytelling, we want to see your work. Short films, experimental pieces, hybrid forms — all welcome. The festival takes place December 5–6, 2026 at Innis Town Hall, University of Toronto.
+        </p>
+
+        <p style="margin-top:24px;">
+          Submit via <a href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer" style="color:var(--cyan);text-decoration:underline;">FilmFreeway</a>. Early bird deadline is July 1, 2026.
+        </p>
+
+        <p style="margin-top:24px;">
+          We can't wait to see what you've been making.
+        </p>
+      </div>
+
+      <!-- Back link -->
+      <div style="margin-top:64px;padding-top:28px;border-top:1px solid var(--line);">
+        <a href="/" class="btn btn-ghost" style="font-size:11px;">← Back to home</a>
+      </div>
+    </div>
+  </article>
+
+  <SiteFooter />
+</MergedLayout>

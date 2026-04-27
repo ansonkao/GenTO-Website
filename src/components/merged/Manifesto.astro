@@ -1,0 +1,76 @@
+---
+const gallery = [
+  "https://s1hneayfji74zvca.public.blob.vercel-storage.com/gento/a.JPG",
+  "https://s1hneayfji74zvca.public.blob.vercel-storage.com/gento/b.JPG",
+  "https://s1hneayfji74zvca.public.blob.vercel-storage.com/gento/c.png",
+  "https://s1hneayfji74zvca.public.blob.vercel-storage.com/gento/d.jpg",
+  "https://s1hneayfji74zvca.public.blob.vercel-storage.com/gento/e.jpeg",
+];
+---
+<section style="padding:160px 40px;position:relative;background:var(--bg);overflow:hidden;">
+  <!-- Halos -->
+  <div class="halo" style="width:600px;height:600px;background:var(--cyan);top:-150px;left:-150px;"></div>
+  <div class="halo" style="width:500px;height:500px;background:var(--magenta);bottom:-100px;right:-100px;opacity:0.25;"></div>
+
+  <div class="container" style="position:relative;">
+    <div class="manifesto-grid">
+      <!-- Left: title -->
+      <div>
+        <span class="eyebrow" style="color:rgba(255,255,255,0.5);">Who We Are</span>
+        <h2 style="margin-top:20px;font-family:var(--font-display);font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.025em;font-weight:500;text-wrap:balance;">
+          A{" "}
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--yellow);">community</span>{" "}
+          for{" "}
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--cyan);">audacious makers</span>{" "}
+          &{" "}
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--magenta);">curious audiences</span>.
+        </h2>
+      </div>
+
+      <!-- Right: body -->
+      <div style="padding-top:24px;">
+        <p style="font-size:19px;line-height:1.65;color:var(--ink);text-wrap:pretty;max-width:640px;">
+          We're living at a special moment in time in the evolution of Cinema — Generative AI is levelling the playing field. For the first time in history, the individual filmmaker is empowered to tell stories with the same level of artistry as Hollywood powerhouses, on an international scale.
+        </p>
+        <p style="margin-top:24px;font-size:19px;line-height:1.65;color:var(--ink);text-wrap:pretty;max-width:640px;">
+          This evolution is happening all over the world, including in our home town of Toronto, Canada. GenTO is a community for this movement.
+        </p>
+
+        <!-- Stats -->
+        <div style="margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;gap:48px;flex-wrap:wrap;font-family:var(--font-mono);font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-dim);">
+          <div>
+            <div style="color:var(--magenta);font-size:22px;letter-spacing:0.04em;">150+</div>
+            <div style="margin-top:6px;">Members</div>
+          </div>
+          <div>
+            <div style="color:var(--cyan);font-size:22px;letter-spacing:0.04em;">5</div>
+            <div style="margin-top:6px;">Meetups hosted</div>
+          </div>
+          <div>
+            <div style="color:var(--yellow);font-size:22px;letter-spacing:0.04em;">1</div>
+            <div style="margin-top:6px;">Inaugural Festival</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery carousel -->
+  <div class="gallery-embla" id="gallery-carousel">
+    <div class="gallery-embla-container">
+      {gallery.map((src) => (
+        <div class="gallery-embla-slide">
+          <img src={src} alt="GenTO community" style="width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(0.95);" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel from 'embla-carousel';
+  const node = document.getElementById('gallery-carousel');
+  if (node) {
+    EmblaCarousel(node, { loop: true, dragFree: true, align: 'start', containScroll: 'trimSnaps' });
+  }
+</script>

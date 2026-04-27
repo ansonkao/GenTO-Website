@@ -1,18 +1,35 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import "../../styles/global.css";
----
+import MergedLayout from "../../layouts/MergedLayout.astro";
+import SiteHeader from "../../components/merged/SiteHeader.astro";
+import SiteFooter from "../../components/merged/SiteFooter.astro";
+import SubHeader from "../../components/merged/SubHeader.astro";
+import NextMeetup from "../../components/meetups/NextMeetup.astro";
+import Archive from "../../components/meetups/Archive.astro";
+import MeetupsCTA from "../../components/meetups/MeetupsCTA.astro";
+import "../../styles/merged.css";
 
-<BaseLayout title="GenTO Monthly Meetups">
-  <Header />
-  <section class="min-h-[60vh] flex items-center justify-center">
-    <div class="max-w-[var(--container-max)] mx-auto px-[var(--container-padding)] text-center">
-      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Monthly Meetups</h1>
-      <p class="text-lg text-white/50">Upcoming and past events</p>
-      <p class="text-base text-white/30 mt-6">More details coming soon.</p>
-    </div>
-  </section>
-  <Footer />
-</BaseLayout>
+const meta = [
+  { k: "Cadence", v: "Monthly, on most months :)", accent: "var(--magenta)" },
+  { k: "Format", v: "Screenings · Talks · Mingle" },
+  { k: "Price", v: "Free · RSVP required", accent: "var(--yellow)" },
+];
+---
+<MergedLayout title="GenTO Monthly Meetups — Cinema, Evolved">
+  <SiteHeader active="meetups" />
+  <SubHeader
+    eyebrow="GenTO"
+    lede="Monthly gathering of filmmakers, writers, and curious humans telling stories and building cinematic worlds with the latest tools. Part screening, part workshop, part kitchen-table argument."
+    meta={meta}
+    accent="var(--magenta)"
+    bgSeed={1}
+  >
+    <Fragment slot="title">
+      Monthly<br />
+      <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--cyan);">Meetups.</span>
+    </Fragment>
+  </SubHeader>
+  <NextMeetup />
+  <Archive />
+  <MeetupsCTA />
+  <SiteFooter />
+</MergedLayout>

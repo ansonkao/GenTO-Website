@@ -1,18 +1,44 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import "../../styles/global.css";
----
+import MergedLayout from "../../layouts/MergedLayout.astro";
+import SiteHeader from "../../components/merged/SiteHeader.astro";
+import SiteFooter from "../../components/merged/SiteFooter.astro";
+import SubHeader from "../../components/merged/SubHeader.astro";
+import CountdownBanner from "../../components/festival/CountdownBanner.astro";
+import FestivalHero from "../../components/festival/FestivalHero.astro";
+import Programme from "../../components/festival/Programme.astro";
+import Ethos from "../../components/festival/Ethos.astro";
+import Awards from "../../components/festival/Awards.astro";
+import Venue from "../../components/festival/Venue.astro";
+import Submit from "../../components/festival/Submit.astro";
+import "../../styles/merged.css";
 
-<BaseLayout title="GenTO Film Festival — Dec 5, 2026">
-  <Header />
-  <section class="min-h-[60vh] flex items-center justify-center">
-    <div class="max-w-[var(--container-max)] mx-auto px-[var(--container-padding)] text-center">
-      <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">Film Festival</h1>
-      <p class="text-lg text-white/50">December 5, 2026 — Toronto, Ontario</p>
-      <p class="text-base text-white/30 mt-6">More details coming soon.</p>
-    </div>
-  </section>
-  <Footer />
-</BaseLayout>
+const meta = [
+  { k: "Dates", v: "DEC 05–06, 2026", accent: "var(--magenta)" },
+  { k: "Venue", v: "Innis Town Hall" },
+  { k: "City", v: "Toronto, ON" },
+  { k: "Edition", v: "001 · Inaugural", accent: "var(--ink)" },
+];
+---
+<MergedLayout title="GenTO Film Festival — Cinema, Evolved">
+  <SiteHeader active="festival" />
+  <SubHeader
+    eyebrow="GenTO presents"
+    title="Toronto AI Film Festival"
+    lede="A two-day celebration of AI-enhanced storytelling at Innis Town Hall Theatre, University of Toronto. Short films, panels, demos, and awards for bold new cinema — local and international."
+    meta={meta}
+    accent="var(--magenta)"
+    bgSeed={0}
+    bgImage="/innis-empty.png"
+    hasSlotBottom
+    fullHeight
+  >
+    <CountdownBanner slot="bottom" />
+  </SubHeader>
+  <FestivalHero />
+  <Programme />
+  <Ethos />
+  <Awards />
+  <Venue />
+  <Submit />
+  <SiteFooter />
+</MergedLayout>

@@ -1,0 +1,39 @@
+---
+import GenToMark from './GenToMark.astro';
+interface Props { active?: string; }
+const { active = "home" } = Astro.props;
+const nav = [
+  { id: "home", label: "Home", href: "/" },
+  { id: "festival", label: "Festival", href: "/festival" },
+  { id: "meetups", label: "Meetups", href: "/meetups" },
+  { id: "community", label: "Discord ↗", href: "https://discord.gg/P6YUV3qrpw" },
+  { id: "updates", label: "Journal", href: "/journal" },
+];
+---
+<header class="site-header" id="site-header">
+  <a class="brand" href="/" aria-label="GenTO home">
+    <GenToMark size={26} />
+    <span class="brand-word">GenTO</span>
+  </a>
+  <nav class="site-nav">
+    {nav.map((n) => (
+      <a href={n.href} class={n.id === active ? "is-active" : ""}>
+        {n.label}
+      </a>
+    ))}
+  </nav>
+  <a class="header-cta glitch-hover" href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer">
+    Submit to Festival ↗
+  </a>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle('is-solid', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

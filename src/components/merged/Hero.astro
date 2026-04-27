@@ -1,0 +1,76 @@
+---
+const HERO_VIDEO = "https://s1hneayfji74zvca.public.blob.vercel-storage.com/GenTO%20Highlight%20Reel.mp4?v=2";
+---
+<header class="scanlines" style="position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:flex-end;padding:40px;padding-top:120px;">
+  <!-- Background video -->
+  <video
+    id="hero-video"
+    src={HERO_VIDEO}
+    autoplay="true" muted="true" loop="true" playsinline="true"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(1.15) contrast(1.05);"
+  />
+
+  <!-- Vertical scrim -->
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,5,9,0.55) 0%,rgba(7,5,9,0.25) 40%,rgba(7,5,9,0.92) 100%);"></div>
+
+  <!-- Chromatic radials -->
+  <div style="position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 20% 80%,rgba(255,45,146,0.18) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(0,229,255,0.15) 0%,transparent 55%);mix-blend-mode:screen;"></div>
+
+  <!-- Corner crop marks -->
+  <svg style="position:absolute;width:28px;height:28px;z-index:5;top:100px;left:40px;" viewBox="0 0 28 28"><path d="M0 0 L14 0 M0 0 L0 14" stroke="var(--yellow)" stroke-width="1.5"/></svg>
+  <svg style="position:absolute;width:28px;height:28px;z-index:5;top:100px;right:40px;" viewBox="0 0 28 28"><path d="M28 0 L14 0 M28 0 L28 14" stroke="var(--yellow)" stroke-width="1.5"/></svg>
+  <svg style="position:absolute;width:28px;height:28px;z-index:5;bottom:40px;left:40px;" viewBox="0 0 28 28"><path d="M0 28 L14 28 M0 28 L0 14" stroke="var(--yellow)" stroke-width="1.5"/></svg>
+  <svg style="position:absolute;width:28px;height:28px;z-index:5;bottom:40px;right:40px;" viewBox="0 0 28 28"><path d="M28 28 L14 28 M28 28 L28 14" stroke="var(--yellow)" stroke-width="1.5"/></svg>
+
+  <!-- Bottom-left content -->
+  <div style="position:relative;z-index:10;width:100%;">
+    <div style="display:flex;gap:12px;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px;">
+      <span style="width:8px;height:8px;background:var(--magenta);border-radius:50%;box-shadow:0 0 12px var(--magenta);"></span>
+      <span style="color:var(--yellow);">Submissions Open</span>
+      <span style="color:var(--ink-mute);">/</span>
+      <span style="color:var(--ink-dim);">TORONTO · EST. 2025</span>
+    </div>
+
+    <h1 style="font-family:var(--font-display);font-size:clamp(48px,7.6vw,132px);line-height:0.95;letter-spacing:-0.035em;font-weight:600;width:100%;text-wrap:balance;">
+      Toronto's premiere stage for{" "}
+      <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--cyan);">AI‑enhanced</span>{" "}
+      storytelling.
+    </h1>
+
+    <p style="margin-top:28px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.04em;color:var(--ink-dim);max-width:580px;line-height:1.65;">
+      A community of filmmakers, artists, and audiences exploring what cinema becomes when new tools meet a strong point of view.
+    </p>
+
+    <div style="margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="/festival" class="btn btn-primary glitch-hover hero-btn">
+        Festival<span class="hide-mobile"> · Dec 5–6, 2026</span> →
+      </a>
+      <a href="/meetups" class="btn btn-ghost glitch-hover hero-btn hide-mobile">Next Meetup</a>
+      <a href="https://discord.gg/P6YUV3qrpw" class="btn btn-ghost glitch-hover hero-btn hide-mobile">Join Discord</a>
+    </div>
+  </div>
+
+  <!-- Top-right meta -->
+  <div id="hero-meta" style="position:absolute;bottom:80px;right:40px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-dim);text-align:right;z-index:10;">
+    <div style="color:var(--yellow);">2026.04</div>
+    <div style="margin-top:6px;">COMMUNITY HIGHLIGHT REEL</div>
+    <div style="margin-top:6px;opacity:0.5;" id="hero-timecode">00:00 / 00:18</div>
+  </div>
+</header>
+
+<script>
+  const video = document.getElementById('hero-video') as HTMLVideoElement;
+  const tcEl = document.getElementById('hero-timecode');
+  if (video && tcEl) {
+    const fmt = (n: number) => {
+      const t = Math.max(0, Math.floor(n || 0));
+      return `${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
+    };
+    const tick = () => {
+      const dur = isFinite(video.duration) && video.duration > 0 ? video.duration : 18;
+      tcEl.textContent = `${fmt(video.currentTime)} / ${fmt(dur)}`;
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+</script>

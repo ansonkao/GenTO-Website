@@ -1,0 +1,64 @@
+---
+const TARGET_ISO = "2026-12-05T14:00:00-05:00";
+---
+<section class="countdown-banner">
+  <div class="container countdown-banner-inner">
+    <div>
+      <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--magenta);">
+        Countdown to opening night
+      </span>
+      <div style="font-family:var(--font-serif);font-style:italic;font-size:22px;color:var(--ink);margin-top:12px;">
+        Dec 5, 2026 · 2:00 PM
+      </div>
+    </div>
+    <div class="countdown" data-target={TARGET_ISO}>
+      <div class="countdown-cell">
+        <div class="countdown-num" data-unit="days">00</div>
+        <span class="countdown-lbl">Days</span>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-num" data-unit="hours">00</div>
+        <span class="countdown-lbl">Hrs</span>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-num" data-unit="minutes">00</div>
+        <span class="countdown-lbl">Min</span>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-num" data-unit="seconds">00</div>
+        <span class="countdown-lbl">Sec</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a class="btn btn-primary glitch-hover" href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer">Submit a Film ↗</a>
+      <a class="btn btn-ghost" href="mailto:festival@gento.ca?subject=I%20want%20to%20buy%20passes%20for%20GenTO%20Toronto%20AI%20Film%20Festival!">Buy Passes</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.countdown[data-target]');
+  if (root) {
+    const target = new Date(root.dataset.target as string).getTime();
+    const cells = {
+      days: root.querySelector<HTMLElement>('[data-unit="days"]'),
+      hours: root.querySelector<HTMLElement>('[data-unit="hours"]'),
+      minutes: root.querySelector<HTMLElement>('[data-unit="minutes"]'),
+      seconds: root.querySelector<HTMLElement>('[data-unit="seconds"]'),
+    };
+    const pad = (n: number) => String(Math.max(0, n)).padStart(2, '0');
+    const tick = () => {
+      const left = target - Date.now();
+      const d = Math.max(0, Math.floor(left / 86400000));
+      const h = Math.max(0, Math.floor((left % 86400000) / 3600000));
+      const m = Math.max(0, Math.floor((left % 3600000) / 60000));
+      const s = Math.max(0, Math.floor((left % 60000) / 1000));
+      if (cells.days) cells.days.textContent = pad(d);
+      if (cells.hours) cells.hours.textContent = pad(h);
+      if (cells.minutes) cells.minutes.textContent = pad(m);
+      if (cells.seconds) cells.seconds.textContent = pad(s);
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>

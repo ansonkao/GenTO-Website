@@ -1,0 +1,51 @@
+---
+import FilmStill from './FilmStill.astro';
+
+interface Props {
+  showAllPosts?: boolean;
+}
+const { showAllPosts = true } = Astro.props;
+
+const posts = [
+  { cat: "Dispatch", title: "We're LIVE! Now accepting submissions.", author: "Community", date: "MAY 01, 2026", read: "1 MIN", seed: 4, accent: "var(--magenta)", slug: "now-accepting-submissions" },
+  // { cat: "Craft", title: "A human-first workflow: three Toronto filmmakers on authorship in the AI era.", author: "Editorial", date: "APR 02, 2026", read: "11 MIN", seed: 6, accent: "var(--cyan)" },
+  // { cat: "Festival", title: "Submissions are open: what we're looking for in GenTO 001.", author: "Programming", date: "MAR 27, 2026", read: "4 MIN", seed: 1, accent: "var(--yellow)" },
+];
+---
+<section id="journal" style="padding:120px 40px;border-top:1px solid var(--line);background:var(--bg-2);">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;gap:32px;flex-wrap:wrap;">
+      <div>
+        <span class="eyebrow">Journal</span>
+        <h2 style="margin-top:16px;font-family:var(--font-display);font-size:clamp(36px,4.5vw,56px);letter-spacing:-0.025em;font-weight:500;line-height:1;">
+          Latest updates from the{" "}
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">community.</span>
+        </h2>
+      </div>
+      {showAllPosts && (
+        <a href="/blog" class="btn btn-ghost" style="flex:0 0 auto;">All posts →</a>
+      )}
+    </div>
+
+    <div class="blog-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      {posts.map((p) => (
+        <a href={`/blog/${p.slug || '#'}`} class="blog-card" style="display:block;background:var(--bg);border:1px solid var(--line);padding:0;">
+          <FilmStill seed={p.seed} aspect="16/10" />
+          <div style="padding:24px 24px 28px;">
+            <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:16px;">
+              <span style={`color:${p.accent};`}>{p.cat}</span>
+              <span>{p.date}</span>
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:22px;line-height:1.2;letter-spacing:-0.015em;font-weight:500;margin-bottom:28px;text-wrap:balance;">
+              {p.title}
+            </h3>
+            <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);">
+              <span>{p.author}</span>
+              <span>{p.read}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

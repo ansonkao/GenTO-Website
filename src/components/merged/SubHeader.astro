@@ -1,0 +1,113 @@
+---
+interface MetaItem { k: string; v: string; accent?: string; }
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lede?: string;
+  meta?: MetaItem[];
+  accent?: string;
+  bgSeed?: number;
+  bgImage?: string;
+  hasSlotBottom?: boolean;
+  fullHeight?: boolean;
+}
+const {
+  eyebrow,
+  title,
+  lede,
+  meta = [],
+  bgSeed = 0,
+  bgImage,
+  hasSlotBottom = false,
+  fullHeight = false,
+} = Astro.props;
+
+const palettes = [
+  ["rgba(255,45,146,0.18)", "rgba(0,229,255,0.14)"],
+  ["rgba(0,229,255,0.18)", "rgba(255,226,58,0.12)"],
+  ["rgba(107,45,255,0.22)", "rgba(255,45,146,0.14)"],
+];
+const p = palettes[bgSeed % palettes.length];
+
+const hasTitleSlot = Astro.slots.has('title');
+
+const headerStyle = [
+  "position:relative",
+  "padding-top:140px",
+  hasSlotBottom ? "padding-bottom:0" : "padding-bottom:72px",
+  "padding-left:40px",
+  "padding-right:40px",
+  "overflow:hidden",
+  "border-bottom:1px solid var(--line-bright)",
+  "background:linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%)",
+  fullHeight ? "min-height:100vh" : "",
+  fullHeight ? "display:flex" : "",
+  fullHeight ? "flex-direction:column" : "",
+].filter(Boolean).join(";");
+---
+<header class="scanlines" style={headerStyle}>
+  {bgImage && (
+    <>
+      <div
+        style={`position:absolute;inset:0;background-image:url(${bgImage});background-size:cover;background-position:center;filter:saturate(0.7) contrast(1.05);opacity:0.55;z-index:0;`}
+      ></div>
+      <div
+        style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,5,9,0.55) 0%, rgba(7,5,9,0.65) 50%, rgba(7,5,9,0.92) 100%);z-index:0;"
+      ></div>
+    </>
+  )}
+
+  <div class="halo" style={`width:700px;height:700px;background:${p[0]};top:-200px;left:-150px;opacity:0.55;`}></div>
+  <div class="halo" style={`width:600px;height:600px;background:${p[1]};bottom:-200px;right:-150px;opacity:0.45;`}></div>
+
+  <div
+    style="position:absolute;inset:0;background-image:linear-gradient(to right, rgba(244,236,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(244,236,255,0.03) 1px, transparent 1px);background-size:80px 80px;pointer-events:none;"
+  ></div>
+
+  <div class="container" style="position:relative;z-index:10;">
+    {eyebrow && (
+      <div
+        style="font-family:var(--font-serif);font-style:italic;letter-spacing:-0.01em;color:#ffffff;margin-bottom:12px;font-weight:500;font-size:36px;"
+      >
+        {eyebrow}
+      </div>
+    )}
+
+    {(title || hasTitleSlot) && (
+      <h1 style="font-family:var(--font-display);font-size:clamp(56px, 9vw, 132px);line-height:0.92;letter-spacing:-0.035em;font-weight:500;max-width:14ch;text-wrap:balance;">
+        <slot name="title">{title}</slot>
+      </h1>
+    )}
+
+    {lede && (
+      <p style="margin-top:36px;font-size:20px;line-height:1.55;color:var(--ink-dim);max-width:680px;text-wrap:pretty;">
+        {lede}
+      </p>
+    )}
+
+    {meta.length > 0 && (
+      <div class="subheader-meta-grid" style="margin-top:64px;max-width:880px;">
+        {meta.map((m, i) => {
+          const accents = ["var(--magenta)", "var(--cyan)", "var(--yellow)", "#ffffff"];
+          const cellAccent = m.accent || accents[i % accents.length];
+          return (
+            <div>
+              <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px;">
+                {m.k}
+              </div>
+              <div style={`font-family:var(--font-display);font-size:22px;letter-spacing:-0.015em;color:${cellAccent};`}>
+                {m.v}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+  </div>
+
+  {hasSlotBottom && (
+    <div style={`position:relative;z-index:10;${fullHeight ? "margin-top:auto" : "margin-top:64px"};margin-left:-40px;margin-right:-40px;`}>
+      <slot name="bottom" />
+    </div>
+  )}
+</header>

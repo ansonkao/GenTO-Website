@@ -1,0 +1,72 @@
+---
+const blocks = [
+  {
+    day: "DAY 01 · SAT",
+    date: "DEC 05",
+    accent: "var(--magenta)",
+    items: [
+      { time: "11:00", title: "Doors open", kind: "Welcome" },
+      { time: "11:30", title: "Opening introduction", kind: "Talk" },
+      { time: "11:45", title: "Opening trailer + Block 1 screenings", kind: "Screening" },
+      { time: "13:00", title: "Lunch break", kind: "Break" },
+      { time: "14:00", title: "Networking", kind: "Mixer" },
+      { time: "14:30", title: "Panel 1 — Educational", kind: "Panel" },
+      { time: "16:00", title: "Presentation / workshop", kind: "Workshop" },
+      { time: "17:30", title: "Dinner break", kind: "Break" },
+      { time: "19:00", title: "Block 2 screenings", kind: "Screening" },
+      { time: "20:00", title: "Panel 2 — Ethical", kind: "Panel" },
+      { time: "22:00", title: "After-party — venue TBA", kind: "Social" },
+    ],
+  },
+  {
+    day: "DAY 02 · SUN",
+    date: "DEC 06",
+    accent: "var(--cyan)",
+    items: [
+      { time: "14:30", title: "Doors open", kind: "Welcome" },
+      { time: "15:00", title: "Introduction", kind: "Talk" },
+      { time: "15:15", title: "Award-winning screenings + presentations", kind: "Ceremony" },
+      { time: "16:00", title: "Panel 3 — Cultural", kind: "Panel" },
+      { time: "17:30", title: "Dinner break", kind: "Break" },
+      { time: "18:30", title: "Optional block — screening · panel · GenJam", kind: "Optional" },
+    ],
+  },
+];
+---
+<section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <span class="eyebrow">Programme</span>
+    <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(40px, 5vw, 72px);letter-spacing:-0.025em;font-weight:500;line-height:1;margin-bottom:64px;">
+      Two days. <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">One room.</span>
+    </h2>
+    <div class="programme-grid">
+      {blocks.map((b) => (
+        <div style="border:1px solid var(--line);background:var(--bg);">
+          <div style="padding:24px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;">
+            <span style={`font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;color:${b.accent};`}>
+              {b.day}
+            </span>
+            <span style="font-family:var(--font-display);font-size:32px;letter-spacing:-0.015em;">{b.date}</span>
+          </div>
+          <div>
+            {b.items.map((it, j) => (
+              <div
+                class="programme-row"
+                style={j < b.items.length - 1 ? "border-bottom:1px solid var(--line);" : ""}
+              >
+                <span style="font-family:var(--font-mono);font-size:13px;color:var(--ink-dim);">{it.time}</span>
+                <span style="font-size:15px;">{it.title}</span>
+                <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--yellow);justify-self:end;">
+                  [ {it.kind} ]
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    <p style="margin-top:28px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;color:var(--ink-mute);text-transform:uppercase;">
+      Full schedule subject to change · Final programme announced November 2026
+    </p>
+  </div>
+</section>

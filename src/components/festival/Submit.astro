@@ -1,0 +1,44 @@
+---
+const dates = [
+  { k: "Opening Date", v: "May 1, 2026" },
+  { k: "Earlybird Deadline", v: "July 1, 2026" },
+  { k: "Regular Deadline", v: "September 1, 2026" },
+  { k: "Late Deadline", v: "October 1, 2026" },
+  { k: "Notification Date", v: "November 1, 2026" },
+  { k: "Event Date", v: "December 5–6, 2026" },
+];
+---
+<section id="submit" class="section" style="position:relative;overflow:hidden;">
+  <div class="halo" style="width:600px;height:600px;background:var(--magenta);top:-100px;left:40%;opacity:0.25;"></div>
+  <div class="container" style="position:relative;">
+    <div class="submit-grid">
+      <div>
+        <span class="eyebrow">Submissions</span>
+        <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(44px, 6vw, 88px);letter-spacing:-0.03em;font-weight:500;line-height:0.98;text-wrap:balance;">
+          Submit your film.
+        </h2>
+        <p style="margin-top:24px;font-size:18px;color:var(--ink-dim);line-height:1.6;max-width:500px;">
+          GenTO is a festival for artists and filmmakers exploring what cinema can become when new tools meet strong artistic vision. Short films, experimental moving-image works, and hybrid forms all welcome.
+        </p>
+        <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer" class="btn btn-primary glitch-hover">Submit on FilmFreeway ↗</a>
+          <a href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Read the guidelines ↗</a>
+        </div>
+      </div>
+
+      <div class="submit-dates">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.22em;color:var(--yellow);margin-bottom:24px;text-transform:uppercase;">
+          / Key Dates
+        </div>
+        {dates.map((r) => (
+          <div style="display:flex;justify-content:space-between;padding:18px 0;border-top:1px solid var(--line);">
+            <span style="font-size:14px;color:var(--ink-dim);">{r.k}</span>
+            <span style={`font-family:var(--font-display);font-size:16px;color:var(--cyan);letter-spacing:-0.01em;`}>
+              {r.v}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

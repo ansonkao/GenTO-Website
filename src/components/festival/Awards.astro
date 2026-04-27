@@ -1,0 +1,55 @@
+---
+const cats = [
+  { name: "Best AI Short Film", desc: "Recognizing an outstanding short film that demonstrates strong storytelling, cinematic craft, and thoughtful use of AI-enhanced production tools.", c: "var(--magenta)" },
+  { name: "Best AI Showcase Film", desc: "Honouring a standout work that boldly demonstrates the creative possibilities of generative filmmaking and new cinematic forms.", c: "var(--cyan)" },
+  { name: "Technical Achievement Award", desc: "Recognizing exceptional innovation in the use of AI tools, workflows, visual design, sound, editing, or production methodology.", c: "var(--yellow)" },
+  { name: "Best Canadian Film", desc: "Celebrating an outstanding AI-enhanced film by a Canadian filmmaker or Canadian creative team.", c: "var(--magenta)" },
+  { name: "Best Emerging Filmmaker", desc: "Recognizing a promising new voice whose work shows originality, ambition, and a strong creative vision.", c: "var(--cyan)" },
+];
+---
+<section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="awards-head">
+      <div>
+        <span class="eyebrow">Awards & Prizes</span>
+        <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(36px, 4.5vw, 56px);letter-spacing:-0.025em;font-weight:500;line-height:1;">
+          Five laurels. <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">One night.</span>
+        </h2>
+      </div>
+      <img src="/gento-laurel.svg" alt="GenTO Laurel" style="flex:0 0 auto;width:120px;height:auto;" />
+    </div>
+
+    <div class="awards-grid">
+      {cats.map((c, i) => {
+        const borderRight = (i % 3) < 2 ? "1px solid var(--line)" : "none";
+        const borderBottom = i < (cats.length - 3) ? "1px solid var(--line)" : "none";
+        return (
+          <div class="award-card" style={`border-right:${borderRight};border-bottom:${borderBottom};`}>
+            <div style={`font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:${c.c};margin-bottom:18px;`}>
+              AWARD {String(i + 1).padStart(2, "0")}
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:26px;letter-spacing:-0.015em;margin-bottom:14px;font-weight:500;">
+              {c.name}
+            </h3>
+            <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;">{c.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+
+    <div class="awards-footer">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--yellow);margin-bottom:10px;">/ PRIZES</div>
+        <p style="font-size:15px;line-height:1.6;color:var(--ink-dim);">
+          Winners receive festival recognition, official laurels, and select prizes provided by GenTO and its partners. In-kind support, mentorship opportunities, and technology credits may be awarded depending on the category. Full details announced closer to the festival.
+        </p>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--cyan);margin-bottom:10px;">/ ANNOUNCEMENT</div>
+        <p style="font-size:15px;line-height:1.6;color:var(--ink-dim);">
+          Awards are presented during the closing ceremony on Dec 6. Select winners may be invited to a live Q&A or a behind-the-scenes discussion of their work.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

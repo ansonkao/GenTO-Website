@@ -1,0 +1,24 @@
+---
+const pillars = [
+  { num: "01", tag: "DEC 5–6 · 2026", title: "Film Festival", body: "Two days of AI-enhanced storytelling at Innis Town Hall. Short films, panels, filmmaker Q&As and awards for bold new cinema.", cta: "See the festival", href: "/festival", accent: "var(--magenta)" },
+  { num: "02", tag: "EVERY MONTH", title: "Monthly Meetups", body: "The city's AI filmmaking community meets IRL — screenings, demos, works-in-progress, and the conversations that fuel them.", cta: "Find the next one", href: "/meetups", accent: "var(--cyan)" },
+  { num: "03", tag: "ALWAYS ON", title: "Discord", body: "A 24/7 workroom: share cuts, trade techniques, find collaborators, and get unreasonably fast feedback from people who get it.", cta: "Join the server", href: "https://discord.gg/P6YUV3qrpw", accent: "var(--yellow)" },
+];
+---
+<section class="pillars-section">
+  <div class="pillars-grid">
+    {pillars.map((p) => (
+      <a href={p.href} class="pillar-card" style={`--pillar-accent:${p.accent};`}>
+        <div class="pillar-top">
+          <span class="pillar-num" style={`color:${p.accent};`}>/ {p.num}</span>
+          <span class="pillar-tag">{p.tag}</span>
+        </div>
+        <h3 class="pillar-title">{p.title}</h3>
+        <p class="pillar-body">{p.body}</p>
+        <div class="pillar-cta" style={`color:${p.accent};`}>
+          {p.cta} <span>→</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,78 @@
+---
+import FilmStill from "../merged/FilmStill.astro";
+const RSVP_HREF = "https://www.eventbrite.ca/e/creating-films-with-ai-gento-toronto-meetup-tickets-1987847846420?aff=oddtdtcreator";
+const upcoming = {
+  n: "№05",
+  date: "MAY 06, 2026",
+  title: "Creating Films",
+  titleAccent: "with AI.",
+  desc: "Join fellow AI film enthusiasts to share ideas, network, and see what others are creating. An evening of presentations, networking, and discussions about AI filmmaking tools.",
+  venue: "InterAccess, 32 Lisgar St",
+  time: "7:00 PM — 9:00 PM",
+  capacity: "Open",
+  cost: "Pay what you can",
+};
+---
+<section class="section" style="border-bottom:1px solid var(--line);position:relative;overflow:hidden;">
+  <div class="halo" style="width:520px;height:520px;background:var(--magenta);top:-180px;right:-120px;opacity:0.22;"></div>
+  <div class="halo" style="width:480px;height:480px;background:var(--cyan);bottom:-200px;left:-100px;opacity:0.18;"></div>
+
+  <div class="container" style="position:relative;">
+    <div class="meetups-section-head">
+      <div>
+        <span class="eyebrow">Next up</span>
+        <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(40px, 5vw, 72px);letter-spacing:-0.025em;font-weight:500;line-height:1;white-space:nowrap;">
+          Upcoming Meetups
+        </h2>
+      </div>
+    </div>
+
+    <div class="next-meetup-card">
+      <div class="next-meetup-left">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-dim);">
+            {upcoming.n} · {upcoming.date}
+          </span>
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);display:inline-flex;align-items:center;gap:8px;">
+            <span style="width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 8px var(--cyan);"></span>
+            RSVP open
+          </span>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:clamp(40px, 4.4vw, 60px);letter-spacing:-0.03em;font-weight:500;line-height:0.98;">
+          {upcoming.title}<br />
+          the <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--magenta);">{upcoming.titleAccent}</span>
+        </h3>
+
+        <p style="font-size:17px;line-height:1.6;color:var(--ink-dim);max-width:520px;">
+          {upcoming.desc}
+        </p>
+
+        <div class="next-meetup-grid">
+          <div>
+            <div class="next-meetup-k">Venue</div>
+            <div class="next-meetup-v">{upcoming.venue}</div>
+          </div>
+          <div>
+            <div class="next-meetup-k">Time</div>
+            <div class="next-meetup-v">{upcoming.time}</div>
+          </div>
+          <div>
+            <div class="next-meetup-k">Cost</div>
+            <div class="next-meetup-v">{upcoming.cost}</div>
+          </div>
+          <div>
+            <div class="next-meetup-k">RSVP</div>
+            <div class="next-meetup-v">
+              <a class="btn btn-primary glitch-hover" href={RSVP_HREF} target="_blank" rel="noopener noreferrer" style="padding:10px 18px;font-size:11px;">RSVP →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-meetup-right">
+        <FilmStill seed={5} aspect="5/4" />
+      </div>
+    </div>
+  </div>
+</section>

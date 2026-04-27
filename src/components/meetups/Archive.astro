@@ -1,0 +1,43 @@
+---
+const past = [
+  { d: "25", mo: "MAR", yr: "2026", n: "№04", title: "Creating Films with AI", desc: "GenTO Toronto Meetup — presentations, networking, and discussions about AI filmmaking.", venue: "InterAccess · 32 Lisgar St", accent: "var(--magenta)", href: "https://www.eventbrite.ca/e/creating-films-with-ai-gento-toronto-meetup-tickets-1985195104999" },
+  { d: "11", mo: "NOV", yr: "2025", n: "№03", title: "Phoenix AI Video Jam", desc: "A hands-on AI video jam session at Phoenix HQ.", venue: "Phoenix HQ · Toronto", accent: "var(--cyan)", href: "https://luma.com/v7iqyt62" },
+  { d: "22", mo: "OCT", yr: "2025", n: "№02", title: "AI Filmmaking Meetup", desc: "Screenings, demos, and conversations with Toronto's AI filmmaking community.", venue: "InterAccess · 32 Lisgar St", accent: "var(--yellow)", href: "https://www.eventbrite.ca/e/ai-filmmaking-meetup-toronto-tickets-1777749599909" },
+  { d: "30", mo: "JUL", yr: "2025", n: "№01", title: "AI Filmmaking Meetup — Curious Refuge", desc: "The inaugural GenTO meetup in partnership with Curious Refuge.", venue: "InterAccess · 32 Lisgar St", accent: "var(--magenta)", href: "https://www.eventbrite.com/e/ai-filmmaking-meetup-toronto-curious-refuge-community-meetup-tickets-1462308406809" },
+];
+---
+<section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="meetups-section-head">
+      <div>
+        <span class="eyebrow">Archive</span>
+        <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(40px, 5vw, 72px);letter-spacing:-0.025em;font-weight:500;line-height:1;">
+          Past <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">meetups.</span>
+        </h2>
+      </div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+        <p style="font-size:16px;line-height:1.6;color:var(--ink-dim);max-width:480px;">
+          Four meetups and counting. Event pages from every gathering.
+        </p>
+        <a class="btn btn-ghost" href="#">All Events →</a>
+      </div>
+    </div>
+
+    <div class="meetup-list">
+      {past.map((m) => (
+        <a href={m.href} target="_blank" rel="noopener noreferrer" class="meetup-row">
+          <div class="meetup-date">
+            <span style={`color:${m.accent};`}>{m.d}</span>
+            <small>{m.mo} {m.yr}</small>
+          </div>
+          <div class="meetup-title">
+            {m.n} ·{" "}
+            <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">{m.title}</span>
+          </div>
+          <p class="meetup-desc">{m.desc}</p>
+          <div class="meetup-venue">{m.venue}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

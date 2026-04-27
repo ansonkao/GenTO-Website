@@ -1,0 +1,41 @@
+---
+const pillars = [
+  { k: "Authorship", v: "Artist-led, not tool-led" },
+  { k: "Craft", v: "The cut still matters" },
+  { k: "Responsibility", v: "Disclosed workflows" },
+];
+---
+<section class="section" style="border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="ethos-grid">
+      <div>
+        <span class="eyebrow">Ethos</span>
+        <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(36px, 4.5vw, 56px);letter-spacing:-0.025em;font-weight:500;line-height:1.02;text-wrap:balance;">
+          Not about{" "}
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">replacing</span>{" "}
+          filmmakers. About{" "}
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--yellow);">expanding</span>{" "}
+          what they can make.
+        </h2>
+      </div>
+      <div>
+        <p style="font-size:18px;line-height:1.65;color:var(--ink);text-wrap:pretty;">
+          We believe the most exciting work in this space is not about replacing filmmakers, but expanding the tools available to artists and storytellers.
+        </p>
+        <p style="margin-top:20px;font-size:17px;line-height:1.65;color:var(--ink-dim);">
+          GenTO supports a <strong style="color:var(--cyan);font-weight:500;">human-first approach</strong> to AI-assisted filmmaking — grounded in artistic authorship, responsibility, and strong creative vision. Set in Toronto, a global hub for both film culture and AI innovation, GenTO brings together artists, filmmakers, and audiences to explore the next chapter of cinema.
+        </p>
+
+        <div class="ethos-pillars">
+          {pillars.map((v, i) => (
+            <div class="ethos-pillar">
+              <div class="ethos-pillar-num">/ 0{i + 1}</div>
+              <div class="ethos-pillar-k">{v.k}</div>
+              <div class="ethos-pillar-v">{v.v}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

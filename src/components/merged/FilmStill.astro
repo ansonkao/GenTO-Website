@@ -1,0 +1,55 @@
+---
+interface Props {
+  seed?: number;
+  label?: string;
+  aspect?: string;
+  image?: string;
+  video?: string;
+}
+const { seed = 0, aspect = "16/9", image, video } = Astro.props;
+const palettes = [
+  ["#ff2d92","#00e5ff","#14101c"],["#ffe23a","#ff2d92","#0a0612"],
+  ["#00e5ff","#6b2dff","#080410"],["#ff6b2d","#ffe23a","#120818"],
+  ["#2dffb6","#00e5ff","#0a0a18"],["#ff2d92","#ffe23a","#140518"],
+  ["#6b2dff","#ff2d92","#050410"],["#00e5ff","#ffe23a","#0a1018"],
+];
+const p = palettes[seed % palettes.length];
+const a1 = (seed * 37) % 360;
+const a2 = (seed * 113) % 360;
+const x1 = 30 + (seed * 7) % 40;
+const y1 = 20 + (seed * 13) % 40;
+const x2 = 60 + (seed * 11) % 30;
+const y2 = 70 - (seed * 5) % 30;
+const frame = String(seed + 1).padStart(3, "0");
+---
+<div style={`position:relative;aspect-ratio:${aspect};overflow:hidden;background:${p[2]};`}>
+  {video ? (
+    <video
+      src={video}
+      autoplay="true"
+      loop="true"
+      muted="true"
+      playsinline="true"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(0.95);"
+    />
+  ) : image ? (
+    <img
+      src={image}
+      alt=""
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(0.95);"
+    />
+  ) : (
+    <>
+      <div style={`position:absolute;inset:0;background:radial-gradient(ellipse at ${x1}% ${y1}%,${p[0]}55 0%,transparent 55%),radial-gradient(ellipse at ${x2}% ${y2}%,${p[1]}44 0%,transparent 60%);`}></div>
+      <div style={`position:absolute;inset:0;background-image:repeating-linear-gradient(${a1}deg,rgba(255,255,255,0.04) 0 1px,transparent 1px 6px);mix-blend-mode:screen;`}></div>
+      <div style={`position:absolute;inset:0;background-image:repeating-linear-gradient(${a2}deg,rgba(0,0,0,0.2) 0 1px,transparent 1px 4px);`}></div>
+    </>
+  )}
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.7) 100%);"></div>
+  <div style="position:absolute;bottom:10px;left:12px;right:12px;display:flex;justify-content:flex-end;font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,236,255,0.85);">
+    <span style="color:var(--magenta);">● REC</span>
+  </div>
+  <div style="position:absolute;top:10px;left:12px;font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;color:rgba(244,236,255,0.5);">
+    [ {frame} ]
+  </div>
+</div>

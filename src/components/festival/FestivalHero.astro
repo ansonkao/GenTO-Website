@@ -1,0 +1,28 @@
+---
+import FilmStill from "../merged/FilmStill.astro";
+const HERO_VIDEO = "https://s1hneayfji74zvca.public.blob.vercel-storage.com/GenTO%20Highlight%20Reel.mp4?v=2";
+---
+<section style="padding:80px 40px 120px;position:relative;border-bottom:1px solid var(--line);overflow:hidden;">
+  <div class="halo" style="width:700px;height:700px;background:rgba(255,45,146,0.35);top:-200px;right:-100px;"></div>
+  <div class="halo" style="width:600px;height:600px;background:rgba(0,229,255,0.25);bottom:-200px;left:-100px;"></div>
+  <div class="container" style="position:relative;">
+    <div class="festival-hero-grid">
+      <div>
+        <span class="eyebrow">Director's Statement</span>
+        <h2 style="margin-top:20px;font-family:var(--font-display);font-size:clamp(40px, 4.8vw, 64px);letter-spacing:-0.025em;font-weight:500;line-height:1.02;text-wrap:balance;">
+          Not a tech conference.<br />
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--magenta);">A cinematic experience.</span>
+        </h2>
+        <p style="margin-top:28px;font-size:18px;line-height:1.65;color:var(--ink);text-wrap:pretty;max-width:540px;">
+          GenTO: Toronto AI Film Festival is a two-day celebration of AI-enhanced storytelling at <strong style="color:var(--cyan);font-weight:500;">Innis Town Hall Theatre</strong> at the University of Toronto.
+        </p>
+        <p style="margin-top:20px;font-size:18px;line-height:1.65;color:var(--ink);text-wrap:pretty;max-width:540px;">
+          We showcase local and international films and artists exploring generative AI as a creative tool, with a focus on bold storytelling, artistic craft, and the future of cinema.
+        </p>
+      </div>
+      <div>
+        <FilmStill seed={4} aspect="1454/720" video={HERO_VIDEO} />
+      </div>
+    </div>
+  </div>
+</section>
