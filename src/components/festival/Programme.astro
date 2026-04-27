@@ -36,9 +36,12 @@ const blocks = [
 <section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);">
   <div class="container">
     <span class="eyebrow">Programme</span>
-    <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(40px, 5vw, 72px);letter-spacing:-0.025em;font-weight:500;line-height:1;margin-bottom:64px;">
+    <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(40px, 5vw, 72px);letter-spacing:-0.025em;font-weight:500;line-height:1;margin-bottom:28px;">
       Two days. <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">One room.</span>
     </h2>
+    <p style="margin-bottom:64px;font-size:18px;line-height:1.65;color:var(--ink-dim);max-width:640px;text-wrap:pretty;">
+      The <strong style="color:var(--magenta);font-weight:600;">full schedule is subject to change</strong> as we confirm speakers, films, and partners. We will announce the final programme in the fall, ahead of the festival weekend.
+    </p>
     <div class="programme-grid">
       {blocks.map((b) => (
         <div style="border:1px solid var(--line);background:var(--bg);">
@@ -65,8 +68,5 @@ const blocks = [
         </div>
       ))}
     </div>
-    <p style="margin-top:28px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;color:var(--ink-mute);text-transform:uppercase;">
-      Full schedule subject to change · Final programme announced November 2026
-    </p>
   </div>
 </section>

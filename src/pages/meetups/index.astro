@@ -7,19 +7,12 @@ import NextMeetup from "../../components/meetups/NextMeetup.astro";
 import Archive from "../../components/meetups/Archive.astro";
 import MeetupsCTA from "../../components/meetups/MeetupsCTA.astro";
 import "../../styles/merged.css";
-
-const meta = [
-  { k: "Cadence", v: "Monthly, on most months :)", accent: "var(--magenta)" },
-  { k: "Format", v: "Screenings · Talks · Mingle" },
-  { k: "Price", v: "Free · RSVP required", accent: "var(--yellow)" },
-];
 ---
 <MergedLayout title="GenTO Monthly Meetups — Cinema, Evolved">
   <SiteHeader active="meetups" />
   <SubHeader
     eyebrow="GenTO"
     lede="Monthly gathering of filmmakers, writers, and curious humans telling stories and building cinematic worlds with the latest tools. Part screening, part workshop, part kitchen-table argument."
-    meta={meta}
     accent="var(--magenta)"
     bgSeed={1}
   >

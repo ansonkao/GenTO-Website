@@ -1,9 +1,9 @@
 ---
 const past = [
-  { d: "25", mo: "MAR", yr: "2026", n: "№04", title: "Creating Films with AI", desc: "GenTO Toronto Meetup — presentations, networking, and discussions about AI filmmaking.", venue: "InterAccess · 32 Lisgar St", accent: "var(--magenta)", href: "https://www.eventbrite.ca/e/creating-films-with-ai-gento-toronto-meetup-tickets-1985195104999" },
+  { d: "25", mo: "MAR", yr: "2026", n: "№04", title: "Creating Films with AI", desc: "GenTO Toronto Meetup — presentations, networking, and discussions about AI filmmaking.", venue: "InterAccess · 32 Lisgar St", accent: "var(--cyan)", href: "https://www.eventbrite.ca/e/creating-films-with-ai-gento-toronto-meetup-tickets-1985195104999" },
   { d: "11", mo: "NOV", yr: "2025", n: "№03", title: "Phoenix AI Video Jam", desc: "A hands-on AI video jam session at Phoenix HQ.", venue: "Phoenix HQ · Toronto", accent: "var(--cyan)", href: "https://luma.com/v7iqyt62" },
-  { d: "22", mo: "OCT", yr: "2025", n: "№02", title: "AI Filmmaking Meetup", desc: "Screenings, demos, and conversations with Toronto's AI filmmaking community.", venue: "InterAccess · 32 Lisgar St", accent: "var(--yellow)", href: "https://www.eventbrite.ca/e/ai-filmmaking-meetup-toronto-tickets-1777749599909" },
-  { d: "30", mo: "JUL", yr: "2025", n: "№01", title: "AI Filmmaking Meetup — Curious Refuge", desc: "The inaugural GenTO meetup in partnership with Curious Refuge.", venue: "InterAccess · 32 Lisgar St", accent: "var(--magenta)", href: "https://www.eventbrite.com/e/ai-filmmaking-meetup-toronto-curious-refuge-community-meetup-tickets-1462308406809" },
+  { d: "22", mo: "OCT", yr: "2025", n: "№02", title: "AI Filmmaking Meetup", desc: "Screenings, demos, and conversations with Toronto's AI filmmaking community.", venue: "InterAccess · 32 Lisgar St", accent: "var(--cyan)", href: "https://www.eventbrite.ca/e/ai-filmmaking-meetup-toronto-tickets-1777749599909" },
+  { d: "30", mo: "JUL", yr: "2025", n: "№01", title: "AI Filmmaking Meetup — Curious Refuge", desc: "The inaugural GenTO meetup in partnership with Curious Refuge.", venue: "InterAccess · 32 Lisgar St", accent: "var(--cyan)", href: "https://www.eventbrite.com/e/ai-filmmaking-meetup-toronto-curious-refuge-community-meetup-tickets-1462308406809" },
 ];
 ---
 <section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);">
@@ -27,8 +27,8 @@ const past = [
       {past.map((m) => (
         <a href={m.href} target="_blank" rel="noopener noreferrer" class="meetup-row">
           <div class="meetup-date">
-            <span style={`color:${m.accent};`}>{m.d}</span>
-            <small>{m.mo} {m.yr}</small>
+            <span style={`color:${m.accent};`}>{m.mo} {m.d}</span>
+            <small>{m.yr}</small>
           </div>
           <div class="meetup-title">
             {m.n} ·{" "}
