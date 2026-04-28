@@ -15,25 +15,43 @@ const nav = [
     <GenToMark size={26} />
     <span class="brand-word">GenTO</span>
   </a>
-  <nav class="site-nav">
-    {nav.map((n) => (
-      <a href={n.href} class={n.id === active ? "is-active" : ""}>
-        {n.label}
-      </a>
-    ))}
-  </nav>
-  <a class="header-cta glitch-hover" href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer">
-    Submit to Festival ↗
-  </a>
+  <button
+    class="menu-toggle"
+    id="menu-toggle"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="site-nav-wrap"
+  >
+    <span></span><span></span><span></span>
+  </button>
+  <div class="site-nav-wrap" id="site-nav-wrap">
+    <nav class="site-nav">
+      {nav.map((n) => (
+        <a href={n.href} class={n.id === active ? "is-active" : ""}>
+          {n.label}
+        </a>
+      ))}
+    </nav>
+    <a class="header-cta glitch-hover" href="https://filmfreeway.com/gentoaifilmfestival" target="_blank" rel="noopener noreferrer">
+      Submit to Festival ↗
+    </a>
+  </div>
 </header>
 
 <script>
   const header = document.getElementById('site-header');
+  const toggle = document.getElementById('menu-toggle');
   if (header) {
     const onScroll = () => {
       header.classList.toggle('is-solid', window.scrollY > 40);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+  if (header && toggle) {
+    toggle.addEventListener('click', () => {
+      const open = header.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
   }
 </script>

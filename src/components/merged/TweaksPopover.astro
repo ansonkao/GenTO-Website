@@ -1,0 +1,205 @@
+---
+const pairings = [
+  {
+    id: "default",
+    name: "Geist Tech (Default)",
+    sub: "Geist · Instrument Serif · Geist Mono",
+    display: "'Geist', system-ui, sans-serif",
+    serif: "'Instrument Serif', Georgia, serif",
+    mono: "'Geist Mono', ui-monospace, monospace",
+  },
+  {
+    id: "spacegrotesk",
+    name: "Space Grotesk Original",
+    sub: "Space Grotesk · Instrument Serif · JetBrains Mono",
+    display: "'Space Grotesk', system-ui, sans-serif",
+    serif: "'Instrument Serif', Georgia, serif",
+    mono: "'JetBrains Mono', ui-monospace, monospace",
+  },
+  {
+    id: "dm",
+    name: "DM Editorial",
+    sub: "DM Sans · DM Serif Display · DM Mono",
+    display: "'DM Sans', system-ui, sans-serif",
+    serif: "'DM Serif Display', Georgia, serif",
+    mono: "'DM Mono', ui-monospace, monospace",
+  },
+  {
+    id: "playfair",
+    name: "Playfair Magazine",
+    sub: "Archivo · Playfair Display · IBM Plex Mono",
+    display: "'Archivo', system-ui, sans-serif",
+    serif: "'Playfair Display', Georgia, serif",
+    mono: "'IBM Plex Mono', ui-monospace, monospace",
+  },
+  {
+    id: "fraunces",
+    name: "Fraunces Display",
+    sub: "Inter Tight · Fraunces · JetBrains Mono",
+    display: "'Inter Tight', system-ui, sans-serif",
+    serif: "'Fraunces', Georgia, serif",
+    mono: "'JetBrains Mono', ui-monospace, monospace",
+  },
+  {
+    id: "manrope",
+    name: "Manrope Soft",
+    sub: "Manrope · Cormorant Garamond · Space Mono",
+    display: "'Manrope', system-ui, sans-serif",
+    serif: "'Cormorant Garamond', Georgia, serif",
+    mono: "'Space Mono', ui-monospace, monospace",
+  },
+];
+---
+<div class="tweaks-root">
+  <button id="tweaks-btn" class="tweaks-btn" aria-label="Font tweaks">Aa</button>
+  <div id="tweaks-panel" class="tweaks-panel" hidden>
+    <div class="tweaks-head">
+      <div>
+        <div class="tweaks-eyebrow">Tweaks · Font Pairings</div>
+        <div class="tweaks-hint">Click to preview · saved per browser</div>
+      </div>
+      <button id="tweaks-close" class="tweaks-close" aria-label="Close">×</button>
+    </div>
+    <div class="tweaks-list">
+      {pairings.map((p) => (
+        <button
+          class="tweaks-item"
+          data-display={p.display}
+          data-serif={p.serif}
+          data-mono={p.mono}
+          data-id={p.id}
+        >
+          <div class="tweaks-item-row">
+            <span class="tweaks-name">{p.name}</span>
+            <span class="tweaks-aa">
+              <span style={`font-family:${p.display};`}>Aa</span>
+              <span style={`font-family:${p.serif};font-style:italic;`}>Aa</span>
+              <span style={`font-family:${p.mono};`}>Aa</span>
+            </span>
+          </div>
+          <div class="tweaks-sub">{p.sub}</div>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .tweaks-root { position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: var(--font-mono); }
+  .tweaks-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(7,5,9,0.9); border: 1px solid var(--line-bright); color: var(--ink);
+    backdrop-filter: blur(10px);
+    font-family: var(--font-display); font-size: 16px; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .tweaks-btn:hover { border-color: var(--cyan); color: var(--cyan); transform: scale(1.05); }
+  .tweaks-panel {
+    position: absolute; bottom: 56px; right: 0;
+    width: 360px; max-width: calc(100vw - 40px);
+    background: rgba(7,5,9,0.96); border: 1px solid var(--line-bright);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    color: var(--ink);
+  }
+  .tweaks-head {
+    padding: 14px 16px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  }
+  .tweaks-eyebrow {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-dim);
+  }
+  .tweaks-hint {
+    margin-top: 4px; font-family: var(--font-mono); font-size: 10px;
+    color: var(--ink-mute); letter-spacing: 0.06em;
+  }
+  .tweaks-close {
+    background: none; border: none; color: var(--ink-dim);
+    font-size: 22px; line-height: 1; cursor: pointer; padding: 0 4px;
+  }
+  .tweaks-close:hover { color: var(--ink); }
+  .tweaks-list { max-height: 60vh; overflow-y: auto; }
+  .tweaks-item {
+    width: 100%; text-align: left; padding: 14px 16px;
+    background: none; border: none; border-bottom: 1px solid var(--line);
+    color: inherit; cursor: pointer; transition: background 0.15s;
+  }
+  .tweaks-item:hover { background: rgba(244,236,255,0.04); }
+  .tweaks-item.is-active { background: rgba(0,229,255,0.06); }
+  .tweaks-item:last-child { border-bottom: none; }
+  .tweaks-item-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  }
+  .tweaks-name {
+    font-family: var(--font-display); font-size: 15px; font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .tweaks-aa { display: inline-flex; gap: 8px; font-size: 18px; color: var(--ink-dim); }
+  .tweaks-sub {
+    margin-top: 4px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em;
+    color: var(--ink-mute);
+  }
+</style>
+
+<script>
+  const KEY = 'gento-fonts';
+  const root = document.documentElement;
+  const btn = document.getElementById('tweaks-btn');
+  const panel = document.getElementById('tweaks-panel');
+  const closeBtn = document.getElementById('tweaks-close');
+  const items = document.querySelectorAll<HTMLButtonElement>('.tweaks-item');
+
+  const apply = (display: string, serif: string, mono: string) => {
+    root.style.setProperty('--font-display', display);
+    root.style.setProperty('--font-serif', serif);
+    root.style.setProperty('--font-mono', mono);
+  };
+
+  const markActive = (id: string | null) => {
+    items.forEach((el) => {
+      el.classList.toggle('is-active', el.dataset.id === id);
+    });
+  };
+
+  try {
+    const saved = localStorage.getItem(KEY);
+    if (saved) {
+      const { id, display, serif, mono } = JSON.parse(saved);
+      if (display && serif && mono) {
+        apply(display, serif, mono);
+        markActive(id);
+      }
+    }
+  } catch {}
+
+  btn?.addEventListener('click', () => {
+    if (panel?.hasAttribute('hidden')) panel.removeAttribute('hidden');
+    else panel?.setAttribute('hidden', '');
+  });
+  closeBtn?.addEventListener('click', () => panel?.setAttribute('hidden', ''));
+
+  items.forEach((el) => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id || null;
+      if (id === 'default') {
+        root.style.removeProperty('--font-display');
+        root.style.removeProperty('--font-serif');
+        root.style.removeProperty('--font-mono');
+        localStorage.removeItem(KEY);
+        markActive(null);
+        return;
+      }
+      const display = el.dataset.display;
+      const serif = el.dataset.serif;
+      const mono = el.dataset.mono;
+      if (display && serif && mono) {
+        apply(display, serif, mono);
+        localStorage.setItem(KEY, JSON.stringify({ id, display, serif, mono }));
+        markActive(id);
+      }
+    });
+  });
+</script>

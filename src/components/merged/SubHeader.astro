@@ -10,6 +10,7 @@ interface Props {
   bgImage?: string;
   hasSlotBottom?: boolean;
   fullHeight?: boolean;
+  ledeHideMobile?: boolean;
 }
 const {
   eyebrow,
@@ -20,6 +21,7 @@ const {
   bgImage,
   hasSlotBottom = false,
   fullHeight = false,
+  ledeHideMobile = false,
 } = Astro.props;
 
 const palettes = [
@@ -80,7 +82,10 @@ const headerStyle = [
     )}
 
     {lede && (
-      <p style="margin-top:36px;font-size:20px;line-height:1.55;color:var(--ink-dim);max-width:680px;text-wrap:pretty;">
+      <p
+        class={ledeHideMobile ? "subheader-lede-hide-mobile" : ""}
+        style="margin-top:36px;font-size:20px;line-height:1.55;color:var(--ink-dim);max-width:680px;text-wrap:pretty;"
+      >
         {lede}
       </p>
     )}
