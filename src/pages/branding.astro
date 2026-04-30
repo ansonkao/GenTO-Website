@@ -1,0 +1,443 @@
+---
+// Combined GenTO branding assets: FilmFreeway banner (3:1, 2808×936) + logo (1:1, 512×512).
+// Each widget has its own toggle and a "Copy as image" button that puts a PNG on the clipboard.
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenTO Branding Assets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.13/dist/html-to-image.js"></script>
+    <style is:global>
+      :root {
+        --magenta: #ff2d92;
+        --cyan: #00e5ff;
+        --yellow: #ffe23a;
+        --ink: #ffffff;
+        --ink-dim: #a29bb5;
+        --ink-mute: #5a5469;
+        --bg: #070509;
+        --bg-2: #0d0a14;
+        --line: rgba(244, 236, 255, 0.08);
+        --line-bright: rgba(244, 236, 255, 0.18);
+        --font-display: "Geist", system-ui, sans-serif;
+        --font-mono: "Geist Mono", ui-monospace, monospace;
+        --font-serif: "Instrument Serif", Georgia, serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { background: #000; }
+      body {
+        font-family: var(--font-display);
+        color: var(--ink);
+        display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+        min-height: 100vh; padding: 60px 20px; gap: 56px;
+      }
+
+      .brand-section {
+        display: flex; flex-direction: column; align-items: center; gap: 20px;
+      }
+      .brand-heading {
+        font-family: var(--font-mono); font-size: 11px;
+        letter-spacing: 0.32em; text-transform: uppercase;
+        color: var(--ink-dim); font-weight: 400;
+      }
+      .brand-controls {
+        display: inline-flex; align-items: center; gap: 24px;
+        font-family: var(--font-mono);
+      }
+      .toggle {
+        display: inline-flex; align-items: center; gap: 12px;
+        cursor: pointer; user-select: none;
+      }
+      .toggle input { position: absolute; opacity: 0; pointer-events: none; }
+      .toggle-track {
+        width: 40px; height: 22px; border-radius: 11px;
+        background: rgba(255,255,255,0.18); position: relative;
+        transition: background 0.2s;
+      }
+      .toggle-thumb {
+        position: absolute; top: 2px; left: 2px;
+        width: 18px; height: 18px; border-radius: 50%;
+        background: #fff; transition: transform 0.2s;
+      }
+      .toggle input:checked + .toggle-track { background: var(--magenta); }
+      .toggle input:checked + .toggle-track .toggle-thumb { transform: translateX(18px); }
+      .toggle-label {
+        font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+        color: var(--ink-dim);
+      }
+      .copy-btn {
+        font-family: var(--font-mono); font-size: 11px;
+        letter-spacing: 0.22em; text-transform: uppercase;
+        padding: 10px 18px; border: 1px solid rgba(255,255,255,0.3);
+        background: none; color: var(--ink); cursor: pointer;
+        transition: all 0.2s;
+      }
+      .copy-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+      .copy-status {
+        font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--ink-dim); min-width: 100px;
+      }
+
+      /* ============ BANNER (3:1, 2808×936) ============ */
+
+      .ffb-wrap {
+        width: 1404px; height: 468px;
+        position: relative;
+      }
+      .ffb-banner {
+        width: 2808px; height: 936px;
+        position: absolute; top: 0; left: 0;
+        transform: scale(0.5); transform-origin: top left;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .ffb-banner.gradient-on {
+        background:
+          radial-gradient(ellipse at 18% 28%, rgba(255,45,146,0.20) 0%, transparent 55%),
+          radial-gradient(ellipse at 82% 78%, rgba(0,229,255,0.16) 0%, transparent 55%),
+          linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+      }
+
+      .ffb-grid {
+        position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+        background-image:
+          linear-gradient(to right, rgba(244,236,255,0.04) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(244,236,255,0.04) 1px, transparent 1px);
+        background-size: 80px 80px;
+      }
+
+      .ffb-scanlines {
+        position: absolute; inset: 0; pointer-events: none; opacity: 0.18;
+        background-image: repeating-linear-gradient(
+          0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 3px
+        );
+      }
+
+      .ffb-crop {
+        position: absolute; width: 56px; height: 56px;
+        stroke: var(--yellow); stroke-width: 2.5; fill: none;
+      }
+      .ffb-crop-tl { top: 165px; left: 368px; }
+      .ffb-crop-tr { top: 165px; right: 368px; }
+      .ffb-crop-bl { bottom: 165px; left: 368px; }
+      .ffb-crop-br { bottom: 165px; right: 368px; }
+
+      .ffb-divider {
+        position: absolute; left: 418px; right: 418px; height: 1px;
+        background: var(--line-bright);
+      }
+      .ffb-divider.top { top: 285px; }
+      .ffb-divider.bottom { bottom: 285px; }
+
+      .ffb-stage {
+        position: absolute; left: 0; right: 0; top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+      }
+
+      .ffb-tagline {
+        font-family: var(--font-serif);
+        font-style: italic; font-weight: 400;
+        font-size: 180px; line-height: 1;
+        letter-spacing: -0.025em;
+        color: rgba(255, 255, 255, 1);
+      }
+
+      .ffb-status {
+        position: absolute; top: 195px; left: 438px;
+        display: inline-flex; align-items: center; gap: 16px;
+        font-family: var(--font-mono);
+        font-size: 26px; letter-spacing: 0.32em;
+        text-transform: uppercase;
+      }
+      .ffb-status-dot {
+        width: 16px; height: 16px; border-radius: 50%;
+        background: var(--magenta);
+        box-shadow: 0 0 24px var(--magenta);
+      }
+      .ffb-status-text { color: var(--yellow); }
+
+      .ffb-edition {
+        position: absolute; bottom: 195px; left: 438px;
+        font-family: var(--font-mono);
+        font-size: 26px; letter-spacing: 0.32em;
+        text-transform: uppercase; color: rgba(255, 255, 255, 0.35);
+      }
+      .ffb-date {
+        position: absolute; top: 195px; right: 438px;
+        font-family: var(--font-mono);
+        font-size: 26px; letter-spacing: 0.32em;
+        text-transform: uppercase; color: var(--cyan);
+      }
+      .ffb-location {
+        position: absolute; bottom: 195px; right: 438px;
+        font-family: var(--font-mono);
+        font-size: 26px; letter-spacing: 0.32em;
+        text-transform: uppercase; color: var(--magenta);
+      }
+
+      /* ============ LOGO (1:1, 512×512) ============ */
+
+      .ffl-banner {
+        width: 512px; height: 512px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 18% 22%, rgba(255,45,146,0.16) 0%, transparent 60%),
+          radial-gradient(ellipse at 82% 82%, rgba(0,229,255,0.22) 0%, transparent 60%),
+          linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+      }
+      .ffl-banner.content-hidden .ffl-stage { display: none !important; }
+
+      .ffl-grid {
+        position: absolute; inset: 0; pointer-events: none; opacity: 0.55;
+        background-image:
+          linear-gradient(to right, rgba(244,236,255,0.04) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(244,236,255,0.04) 1px, transparent 1px);
+        background-size: 38px 38px;
+      }
+
+      .ffl-scanlines {
+        position: absolute; inset: 0; pointer-events: none; opacity: 0.18;
+        background-image: repeating-linear-gradient(
+          0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 3px
+        );
+      }
+
+      .ffl-crop {
+        position: absolute; width: 28px; height: 28px;
+        stroke: var(--yellow); stroke-width: 2; fill: none;
+      }
+      .ffl-crop-tl { top: 28px; left: 28px; }
+      .ffl-crop-tr { top: 28px; right: 28px; }
+      .ffl-crop-bl { bottom: 28px; left: 28px; }
+      .ffl-crop-br { bottom: 28px; right: 28px; }
+
+      .ffl-stage {
+        position: absolute; left: 0; right: 0; top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        padding: 0 38px;
+      }
+
+      .ffl-logo {
+        display: block;
+        width: 180px; height: auto;
+        margin: 0 auto;
+      }
+
+      .ffl-presents {
+        margin-top: 19px;
+        font-family: var(--font-mono);
+        font-size: 17px;
+        letter-spacing: 0.42em;
+        text-transform: uppercase;
+        color: var(--magenta);
+        padding-left: 0.42em;
+      }
+
+      .ffl-stack {
+        margin-top: 17px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 96px;
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+      }
+      .ffl-stack > div { display: block; }
+      .ffl-italic {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.6em;
+        line-height: 0.88;
+        color: var(--cyan);
+        letter-spacing: -0.015em;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="brand-section">
+      <div class="brand-heading">/ FilmFreeway Banner — 2808 × 936</div>
+      <div class="ffb-wrap">
+        <div class="ffb-banner" id="ffb-banner">
+          <div class="ffb-grid"></div>
+          <div class="ffb-scanlines"></div>
+
+          <svg class="ffb-crop ffb-crop-tl" viewBox="0 0 56 56"><path d="M0 0 L28 0 M0 0 L0 28" stroke="#ffe23a" stroke-width="2.5" fill="none" /></svg>
+          <svg class="ffb-crop ffb-crop-tr" viewBox="0 0 56 56"><path d="M56 0 L28 0 M56 0 L56 28" stroke="#ffe23a" stroke-width="2.5" fill="none" /></svg>
+          <svg class="ffb-crop ffb-crop-bl" viewBox="0 0 56 56"><path d="M0 56 L28 56 M0 56 L0 28" stroke="#ffe23a" stroke-width="2.5" fill="none" /></svg>
+          <svg class="ffb-crop ffb-crop-br" viewBox="0 0 56 56"><path d="M56 56 L28 56 M56 56 L56 28" stroke="#ffe23a" stroke-width="2.5" fill="none" /></svg>
+
+          <div class="ffb-divider top"></div>
+          <div class="ffb-divider bottom"></div>
+
+          <div class="ffb-status">
+            <span class="ffb-status-dot"></span>
+            <span class="ffb-status-text">Submissions Open</span>
+          </div>
+
+          <div class="ffb-edition">001 — Inaugural Edition</div>
+
+          <div class="ffb-stage">
+            <div class="ffb-tagline">Cinema, Evolved</div>
+          </div>
+
+          <div class="ffb-date">Dec 05–06, 2026</div>
+          <div class="ffb-location">Innis Town Hall · Toronto</div>
+        </div>
+      </div>
+      <div class="brand-controls">
+        <label class="toggle">
+          <input type="checkbox" id="ffb-toggle" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-label">Gradient</span>
+        </label>
+        <button class="copy-btn" id="ffb-copy-btn">Copy</button>
+        <button class="copy-btn" id="ffb-save-btn">Save</button>
+        <span class="copy-status" id="ffb-copy-status"></span>
+      </div>
+    </section>
+
+    <section class="brand-section">
+      <div class="brand-heading">/ FilmFreeway Logo — 512 × 512</div>
+      <div class="ffl-banner" id="ffl-banner">
+        <div class="ffl-grid"></div>
+        <div class="ffl-scanlines"></div>
+
+        <svg class="ffl-crop ffl-crop-tl" viewBox="0 0 28 28"><path d="M0 0 L14 0 M0 0 L0 14" stroke="#ffe23a" stroke-width="2" fill="none" /></svg>
+        <svg class="ffl-crop ffl-crop-tr" viewBox="0 0 28 28"><path d="M28 0 L14 0 M28 0 L28 14" stroke="#ffe23a" stroke-width="2" fill="none" /></svg>
+        <svg class="ffl-crop ffl-crop-bl" viewBox="0 0 28 28"><path d="M0 28 L14 28 M0 28 L0 14" stroke="#ffe23a" stroke-width="2" fill="none" /></svg>
+        <svg class="ffl-crop ffl-crop-br" viewBox="0 0 28 28"><path d="M28 28 L14 28 M28 28 L28 14" stroke="#ffe23a" stroke-width="2" fill="none" /></svg>
+
+        <div class="ffl-stage">
+          <img class="ffl-logo" src="/logo.svg" alt="GenTO" />
+          <div class="ffl-presents">Presents</div>
+          <div class="ffl-stack">
+            <div>Toronto</div>
+            <div class="ffl-italic">AI Film</div>
+            <div>Festival</div>
+          </div>
+        </div>
+      </div>
+      <div class="brand-controls">
+        <label class="toggle">
+          <input type="checkbox" id="ffl-toggle" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-label">Hide content</span>
+        </label>
+        <button class="copy-btn" id="ffl-copy-btn">Copy</button>
+        <button class="copy-btn" id="ffl-save-btn">Save</button>
+        <span class="copy-status" id="ffl-copy-status"></span>
+      </div>
+    </section>
+
+    <script is:inline>
+      (function () {
+        function setupToggle(toggleId, targetId, className) {
+          var toggle = document.getElementById(toggleId);
+          var target = document.getElementById(targetId);
+          if (!toggle || !target) return;
+          var apply = function () {
+            if (toggle.checked) target.classList.add(className);
+            else target.classList.remove(className);
+          };
+          toggle.addEventListener('change', apply);
+          toggle.addEventListener('input', apply);
+          apply();
+        }
+
+        function setupCopy(btnId, statusId, targetId, width, height, captureStyle) {
+          var btn = document.getElementById(btnId);
+          var status = document.getElementById(statusId);
+          var target = document.getElementById(targetId);
+          if (!btn || !status || !target) return;
+          btn.addEventListener('click', async function () {
+            if (!window.htmlToImage) {
+              status.textContent = 'lib missing';
+              return;
+            }
+            status.textContent = 'Capturing…';
+            try {
+              var blob = await window.htmlToImage.toBlob(target, {
+                width: width, height: height,
+                pixelRatio: 1,
+                cacheBust: true,
+                style: captureStyle || {},
+              });
+              if (!blob) { status.textContent = 'Capture failed'; return; }
+              try {
+                await navigator.clipboard.write([
+                  new ClipboardItem({ 'image/png': blob }),
+                ]);
+                status.textContent = 'Copied!';
+                setTimeout(function () { status.textContent = ''; }, 2000);
+              } catch (err) {
+                console.error(err);
+                status.textContent = 'Clipboard denied';
+              }
+            } catch (err) {
+              console.error(err);
+              status.textContent = 'Capture failed';
+            }
+          });
+        }
+
+        function setupSave(btnId, statusId, targetId, filename, width, height, captureStyle) {
+          var btn = document.getElementById(btnId);
+          var status = document.getElementById(statusId);
+          var target = document.getElementById(targetId);
+          if (!btn || !status || !target) return;
+          btn.addEventListener('click', async function () {
+            if (!window.htmlToImage) {
+              status.textContent = 'lib missing';
+              return;
+            }
+            status.textContent = 'Saving…';
+            try {
+              var blob = await window.htmlToImage.toBlob(target, {
+                width: width, height: height,
+                pixelRatio: 1,
+                cacheBust: true,
+                style: captureStyle || {},
+              });
+              if (!blob) { status.textContent = 'Capture failed'; return; }
+              var url = URL.createObjectURL(blob);
+              var link = document.createElement('a');
+              link.href = url;
+              link.download = filename;
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+              setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+              status.textContent = 'Saved!';
+              setTimeout(function () { status.textContent = ''; }, 2000);
+            } catch (err) {
+              console.error(err);
+              status.textContent = 'Capture failed';
+            }
+          });
+        }
+
+        // Banner: gradient toggle + copy/save at native 2808×936 (drop the preview scale)
+        setupToggle('ffb-toggle', 'ffb-banner', 'gradient-on');
+        setupCopy('ffb-copy-btn', 'ffb-copy-status', 'ffb-banner', 2808, 936, { transform: 'none' });
+        setupSave('ffb-save-btn', 'ffb-copy-status', 'ffb-banner', 'gento-banner-2808x936.png', 2808, 936, { transform: 'none' });
+
+        // Logo: hide-content toggle + copy/save at native 512×512
+        setupToggle('ffl-toggle', 'ffl-banner', 'content-hidden');
+        setupCopy('ffl-copy-btn', 'ffl-copy-status', 'ffl-banner', 512, 512);
+        setupSave('ffl-save-btn', 'ffl-copy-status', 'ffl-banner', 'gento-logo-512x512.png', 512, 512);
+      })();
+    </script>
+  </body>
+</html>
