@@ -1,6 +1,5 @@
 ---
-// Combined GenTO branding assets: FilmFreeway banner (3:1, 2808×936) + logo (1:1, 512×512).
-// Each widget has its own toggle and a "Copy as image" button that puts a PNG on the clipboard.
+// Combined GenTO branding assets page.
 ---
 <!doctype html>
 <html lang="en">
@@ -32,12 +31,12 @@
         --font-serif: "Instrument Serif", Georgia, serif;
       }
       * { box-sizing: border-box; margin: 0; padding: 0; }
-      html, body { background: #000; }
+      html, body { background: #1c1628; }
       body {
         font-family: var(--font-display);
         color: var(--ink);
         display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-        min-height: 100vh; padding: 60px 20px; gap: 56px;
+        min-height: 100vh; padding: 60px 20px; gap: 96px;
       }
 
       .brand-section {
@@ -49,8 +48,9 @@
         color: var(--ink-dim); font-weight: 400;
       }
       .brand-controls {
-        display: inline-flex; align-items: center; gap: 24px;
+        display: flex; justify-content: center; align-items: center; gap: 24px;
         font-family: var(--font-mono);
+        width: 100%;
       }
       .toggle {
         display: inline-flex; align-items: center; gap: 12px;
@@ -263,9 +263,96 @@
         color: var(--cyan);
         letter-spacing: -0.015em;
       }
+
+      /* ============ LOGO SVG (1401×513) ============ */
+
+      .logosvg-wrap {
+        width: 700px; height: 257px;
+        position: relative;
+      }
+      .logosvg-stage {
+        width: 1401px; height: 513px;
+        position: absolute; top: 0; left: 0;
+        transform: scale(0.5); transform-origin: top left;
+        background: var(--bg-2);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .logosvg-stage.on-white {
+        background: #ffffff;
+      }
+      .logosvg-stage.on-white svg path {
+        fill: #111111;
+      }
+      .logosvg-stage svg {
+        width: 1100px; height: auto;
+      }
+
+      /* ============ FILMFREEWAY LOGO PNG ============ */
+
+      .fflogo-wrap {
+        display: flex; align-items: center; justify-content: center;
+      }
+      .fflogo-img {
+        display: block;
+        max-width: 420px;
+        width: 100%;
+        height: auto;
+      }
     </style>
   </head>
   <body>
+    <section class="brand-section">
+      <div class="brand-heading">/ GenTO Logo SVG — 1401 × 513</div>
+      <div class="logosvg-wrap">
+        <div class="logosvg-stage" id="logosvg-stage">
+          <svg width="1401" height="513" viewBox="0 0 1401 513" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1296.66 357.278C1281.59 357.278 1267.61 354.828 1254.73 349.926C1242.02 345.025 1230.94 338.126 1221.5 329.231C1212.25 320.336 1204.98 309.897 1199.72 297.916C1194.64 285.934 1192.09 272.864 1192.09 258.704C1192.09 244.544 1194.64 231.473 1199.72 219.492C1204.98 207.51 1212.34 197.072 1221.78 188.176C1231.22 179.281 1242.29 172.383 1255 167.481C1267.7 162.58 1281.5 160.129 1296.39 160.129C1311.46 160.129 1325.25 162.58 1337.78 167.481C1350.49 172.383 1361.47 179.281 1370.73 188.176C1380.17 197.072 1387.52 207.51 1392.78 219.492C1398.05 231.292 1400.68 244.362 1400.68 258.704C1400.68 272.864 1398.05 286.025 1392.78 298.188C1387.52 310.169 1380.17 320.608 1370.73 329.503C1361.47 338.217 1350.49 345.025 1337.78 349.926C1325.25 354.828 1311.55 357.278 1296.66 357.278ZM1296.39 319.7C1304.92 319.7 1312.73 318.248 1319.81 315.343C1327.07 312.439 1333.42 308.263 1338.87 302.817C1344.31 297.371 1348.49 290.927 1351.39 283.483C1354.48 276.04 1356.02 267.78 1356.02 258.704C1356.02 249.627 1354.48 241.367 1351.39 233.924C1348.49 226.481 1344.31 220.036 1338.87 214.59C1333.6 209.144 1327.34 204.969 1320.08 202.064C1312.82 199.159 1304.92 197.707 1296.39 197.707C1287.86 197.707 1279.96 199.159 1272.7 202.064C1265.62 204.969 1259.35 209.144 1253.91 214.59C1248.46 220.036 1244.2 226.481 1241.11 233.924C1238.21 241.367 1236.75 249.627 1236.75 258.704C1236.75 267.599 1238.21 275.859 1241.11 283.483C1244.2 290.927 1248.37 297.371 1253.64 302.817C1259.08 308.263 1265.44 312.439 1272.7 315.343C1279.96 318.248 1287.86 319.7 1296.39 319.7Z" fill="white"/>
+            <path d="M1091.51 354.011V199.341H1030.51V163.396H1196.62V199.341H1135.62V354.011H1091.51Z" fill="white"/>
+            <path d="M874.367 354.011V207.51H914.941V248.084L907.316 235.83C912.581 226.027 920.115 218.493 929.918 213.228C939.721 207.964 950.885 205.332 963.411 205.332C975.03 205.332 985.377 207.692 994.454 212.411C1003.71 216.95 1010.97 224.03 1016.24 233.651C1021.5 243.091 1024.14 255.254 1024.14 270.14V354.011H981.656V276.676C981.656 264.876 979.023 256.162 973.759 250.534C968.676 244.907 961.414 242.093 951.974 242.093C945.257 242.093 939.176 243.545 933.73 246.45C928.465 249.173 924.29 253.439 921.204 259.248C918.299 265.057 916.847 272.5 916.847 281.577V354.011H874.367Z" fill="white"/>
+            <path d="M788.901 356.189C772.2 356.189 757.495 352.921 744.788 346.386C732.261 339.851 722.549 330.955 715.651 319.7C708.752 308.263 705.303 295.283 705.303 280.76C705.303 266.056 708.662 253.076 715.379 241.821C722.277 230.384 731.626 221.488 743.426 215.135C755.226 208.599 768.569 205.332 783.455 205.332C797.796 205.332 810.686 208.418 822.122 214.59C833.741 220.581 842.908 229.294 849.625 240.731C856.342 251.987 859.701 265.511 859.701 281.305C859.701 282.939 859.61 284.845 859.428 287.023C859.247 289.02 859.065 290.926 858.884 292.742H739.886V267.962H836.555L820.216 275.314C820.216 267.69 818.673 261.063 815.587 255.436C812.501 249.808 808.235 245.451 802.789 242.365C797.343 239.097 790.989 237.464 783.727 237.464C776.466 237.464 770.021 239.097 764.394 242.365C758.947 245.451 754.681 249.899 751.595 255.708C748.509 261.336 746.966 268.053 746.966 275.859V282.394C746.966 290.382 748.691 297.462 752.14 303.634C755.771 309.625 760.763 314.254 767.117 317.522C773.652 320.608 781.277 322.151 789.99 322.151C797.796 322.151 804.604 320.971 810.413 318.611C816.404 316.251 821.85 312.711 826.752 307.991L849.353 332.498C842.636 340.123 834.195 346.023 824.029 350.198C813.863 354.192 802.153 356.189 788.901 356.189Z" fill="white"/>
+            <path d="M614.766 357.278C599.698 357.278 585.811 354.918 573.103 350.198C560.577 345.297 549.594 338.398 540.154 329.503C530.896 320.608 523.634 310.169 518.37 298.188C513.287 286.207 510.745 273.045 510.745 258.704C510.745 244.362 513.287 231.201 518.37 219.219C523.634 207.238 530.987 196.799 540.426 187.904C549.866 179.009 560.94 172.201 573.648 167.481C586.355 162.58 600.334 160.129 615.583 160.129C632.466 160.129 647.624 162.943 661.058 168.57C674.673 174.198 686.11 182.367 695.368 193.078L667.049 219.219C660.15 211.958 652.616 206.602 644.447 203.153C636.278 199.522 627.383 197.707 617.761 197.707C608.503 197.707 600.061 199.159 592.437 202.064C584.812 204.969 578.186 209.144 572.559 214.59C567.112 220.036 562.846 226.481 559.76 233.924C556.856 241.367 555.403 249.627 555.403 258.704C555.403 267.599 556.856 275.768 559.76 283.211C562.846 290.654 567.112 297.19 572.559 302.817C578.186 308.263 584.722 312.439 592.165 315.343C599.789 318.248 608.14 319.7 617.217 319.7C625.931 319.7 634.372 318.339 642.541 315.616C650.892 312.711 658.97 307.9 666.776 301.183L691.829 333.043C681.481 340.849 669.409 346.84 655.612 351.015C641.997 355.191 628.381 357.278 614.766 357.278ZM691.829 333.043L651.527 327.325V255.708H691.829V333.043Z" fill="white"/>
+            <path d="M366.51 115.624C398.296 101.472 424.064 118.206 424.064 153V365C424.064 378.807 413.838 394.553 401.225 400.168L177.406 499.819C162.27 506.558 150 498.59 150 482.021V266.021C150 236.198 172.086 202.187 199.331 190.057L366.51 115.624ZM186.542 445.752C186.542 451.274 190.632 453.931 195.677 451.684L382.041 368.71C385.068 367.362 387.522 363.583 387.522 360.269V166.269C387.522 155.224 379.342 149.912 369.251 154.404L212.121 224.363C197.994 230.653 186.542 248.288 186.542 263.752V445.752Z" fill="white"/>
+            <path d="M291.51 70.6244C323.296 56.4724 349.064 73.2061 349.064 108V320C349.064 333.807 338.838 349.553 326.225 355.168L102.406 454.819C87.2703 461.558 75 453.59 75 437.021V221.021C75 191.198 97.0864 157.187 124.331 145.057L291.51 70.6244ZM111.542 400.752C111.542 406.274 115.632 408.931 120.677 406.684L307.041 323.71C310.068 322.362 312.522 318.583 312.522 315.269V121.269C312.522 110.224 304.342 104.912 294.251 109.404L137.121 179.363C122.994 185.653 111.542 203.288 111.542 218.752V400.752Z" fill="white"/>
+            <path d="M216.51 25.6244C248.296 11.4724 274.064 28.2061 274.064 63V275C274.064 288.807 263.838 304.553 251.225 310.168L27.4064 409.819C12.2703 416.558 0 408.59 0 392.021V176.021C0 146.198 22.0864 112.187 49.3315 100.057L216.51 25.6244ZM36.5418 355.752C36.5418 361.274 40.6319 363.931 45.6773 361.684L232.041 278.71C235.068 277.362 237.522 273.583 237.522 270.269V76.2695C237.522 65.2238 229.342 59.9115 219.251 64.4042L62.1211 134.363C47.994 140.653 36.5418 158.288 36.5418 173.752V355.752Z" fill="white"/>
+          </svg>
+        </div>
+      </div>
+      <div class="brand-controls">
+        <label class="toggle">
+          <input type="checkbox" id="logosvg-toggle" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-label">On white</span>
+        </label>
+        <button class="copy-btn" id="logosvg-copy-btn">Copy</button>
+        <button class="copy-btn" id="logosvg-save-btn">Save</button>
+        <span class="copy-status" id="logosvg-copy-status"></span>
+      </div>
+    </section>
+
+    <section class="brand-section">
+      <div class="brand-heading">/ GenTO Logo PNG</div>
+      <div class="fflogo-wrap">
+        <img class="fflogo-img" id="gento-logo-img" src="/gento-logo.png" alt="GenTO Logo" />
+      </div>
+      <div class="brand-controls">
+        <button class="copy-btn" id="gento-logo-copy-btn">Copy</button>
+        <button class="copy-btn" id="gento-logo-save-btn">Save</button>
+        <span class="copy-status" id="gento-logo-copy-status"></span>
+      </div>
+    </section>
+
+    <section class="brand-section">
+      <div class="brand-heading">/ FilmFreeway Logo PNG</div>
+      <div class="fflogo-wrap">
+        <img class="fflogo-img" id="fflogo-img" src="/film-freeway-logo.png" alt="GenTO FilmFreeway Logo" />
+      </div>
+      <div class="brand-controls">
+        <button class="copy-btn" id="fflogo-copy-btn">Copy</button>
+        <button class="copy-btn" id="fflogo-save-btn">Save</button>
+        <span class="copy-status" id="fflogo-copy-status"></span>
+      </div>
+    </section>
+
     <section class="brand-section">
       <div class="brand-heading">/ FilmFreeway Banner — 2808 × 936</div>
       <div class="ffb-wrap">
@@ -298,7 +385,7 @@
       </div>
       <div class="brand-controls">
         <label class="toggle">
-          <input type="checkbox" id="ffb-toggle" />
+          <input type="checkbox" id="ffb-toggle" checked />
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
           <span class="toggle-label">Gradient</span>
         </label>
@@ -331,7 +418,7 @@
       </div>
       <div class="brand-controls">
         <label class="toggle">
-          <input type="checkbox" id="ffl-toggle" />
+          <input type="checkbox" id="ffl-toggle" checked />
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
           <span class="toggle-label">Hide content</span>
         </label>
@@ -433,10 +520,80 @@
         setupCopy('ffb-copy-btn', 'ffb-copy-status', 'ffb-banner', 2808, 936, { transform: 'none' });
         setupSave('ffb-save-btn', 'ffb-copy-status', 'ffb-banner', 'gento-banner-2808x936.png', 2808, 936, { transform: 'none' });
 
-        // Logo: hide-content toggle + copy/save at native 512×512
+        // FilmFreeway Logo: hide-content toggle + copy/save at native 512×512
         setupToggle('ffl-toggle', 'ffl-banner', 'content-hidden');
         setupCopy('ffl-copy-btn', 'ffl-copy-status', 'ffl-banner', 512, 512);
         setupSave('ffl-save-btn', 'ffl-copy-status', 'ffl-banner', 'gento-logo-512x512.png', 512, 512);
+
+        // Logo SVG: white/black toggle + copy/save at native 1401×513
+        setupToggle('logosvg-toggle', 'logosvg-stage', 'on-white');
+        setupCopy('logosvg-copy-btn', 'logosvg-copy-status', 'logosvg-stage', 1401, 513, { transform: 'none' });
+        setupSave('logosvg-save-btn', 'logosvg-copy-status', 'logosvg-stage', 'gento-logo-1401x513.png', 1401, 513, { transform: 'none' });
+
+        // GenTO Logo PNG: copy and save the original file
+        (function () {
+          var copyBtn = document.getElementById('gento-logo-copy-btn');
+          var saveBtn = document.getElementById('gento-logo-save-btn');
+          var status = document.getElementById('gento-logo-copy-status');
+          if (copyBtn && status) {
+            copyBtn.addEventListener('click', async function () {
+              status.textContent = 'Copying…';
+              try {
+                var resp = await fetch('/gento-logo.png');
+                var blob = await resp.blob();
+                await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+                status.textContent = 'Copied!';
+                setTimeout(function () { status.textContent = ''; }, 2000);
+              } catch (e) { console.error(e); status.textContent = 'Failed'; }
+            });
+          }
+          if (saveBtn && status) {
+            saveBtn.addEventListener('click', function () {
+              var a = document.createElement('a');
+              a.href = '/gento-logo.png';
+              a.download = 'gento-logo.png';
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+              status.textContent = 'Saved!';
+              setTimeout(function () { status.textContent = ''; }, 2000);
+            });
+          }
+        })();
+
+        // FilmFreeway Logo PNG: copy and save the original file
+        var fflogoCopyBtn = document.getElementById('fflogo-copy-btn');
+        var fflogoSaveBtn = document.getElementById('fflogo-save-btn');
+        var fflogoStatus = document.getElementById('fflogo-copy-status');
+
+        if (fflogoCopyBtn && fflogoStatus) {
+          fflogoCopyBtn.addEventListener('click', async function () {
+            fflogoStatus.textContent = 'Copying…';
+            try {
+              var resp = await fetch('/film-freeway-logo.png');
+              var blob = await resp.blob();
+              await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+              fflogoStatus.textContent = 'Copied!';
+              setTimeout(function () { fflogoStatus.textContent = ''; }, 2000);
+            } catch (e) {
+              console.error(e);
+              fflogoStatus.textContent = 'Failed';
+            }
+          });
+        }
+
+        if (fflogoSaveBtn && fflogoStatus) {
+          fflogoSaveBtn.addEventListener('click', function () {
+            var a = document.createElement('a');
+            a.href = '/film-freeway-logo.png';
+            a.download = 'film-freeway-logo.png';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            fflogoStatus.textContent = 'Saved!';
+            setTimeout(function () { fflogoStatus.textContent = ''; }, 2000);
+          });
+        }
       })();
     </script>
   </body>
