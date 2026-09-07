@@ -1,4 +1,6 @@
 ---
+import Analytics from "@vercel/analytics/astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -71,5 +73,7 @@ const { title, description = "Toronto's premiere stage for AI-enhanced storytell
         });
       }
     </script>
+
+    <Analytics />
   </body>
 </html>

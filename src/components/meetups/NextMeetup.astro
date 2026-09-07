@@ -1,16 +1,16 @@
 ---
 import FilmStill from "../merged/FilmStill.astro";
-const RSVP_HREF = "https://www.eventbrite.ca/e/creating-films-with-ai-gento-toronto-meetup-tickets-1987847846420?aff=oddtdtcreator";
+const RSVP_HREF = "https://www.eventbrite.ca/e/runway-ai-film-festival-screening-filmmaker-qa-tickets-1997976972910";
 const upcoming = {
-  n: "№05",
-  date: "MAY 06, 2026",
-  title: "Creating Films",
-  titleAccent: "with AI.",
-  desc: "Join fellow AI film enthusiasts to share ideas, network, and see what others are creating. An evening of presentations, networking, and discussions about AI filmmaking tools.",
-  venue: "InterAccess, 32 Lisgar St",
-  time: "7:00 PM — 9:00 PM",
+  n: "№07",
+  date: "SEP 11, 2026",
+  title: "Runway AI Film Festival",
+  titleAccent: "Screening & Q&A.",
+  desc: "Award-winning films from Runway's Annual AI Film Festival, followed by a live Q&A with festival winner Robert Gaudette. Networking with filmmakers, artists, and technologists — snacks and refreshments to follow.",
+  venue: "Startuptive, 123 Edward St #205",
+  time: "6:00 PM — 10:00 PM",
   capacity: "Open",
-  cost: "Pay what you can",
+  cost: "Free",
 };
 ---
 <section class="section" style="border-bottom:1px solid var(--line);position:relative;overflow:hidden;">
@@ -41,7 +41,7 @@ const upcoming = {
 
         <h3 style="font-family:var(--font-display);font-size:clamp(40px, 4.4vw, 60px);letter-spacing:-0.03em;font-weight:500;line-height:0.98;">
           {upcoming.title}<br />
-          the <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--magenta);">{upcoming.titleAccent}</span>
+          <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--magenta);">{upcoming.titleAccent}</span>
         </h3>
 
         <p style="font-size:17px;line-height:1.6;color:var(--ink-dim);max-width:520px;">
@@ -71,7 +71,7 @@ const upcoming = {
       </div>
 
       <div class="next-meetup-right">
-        <FilmStill seed={5} aspect="5/4" />
+        <FilmStill seed={7} aspect="5/4" />
       </div>
     </div>
   </div>

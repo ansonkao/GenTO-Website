@@ -1,5 +1,6 @@
 ---
 import TweaksPopover from "../components/merged/TweaksPopover.astro";
+import Analytics from "@vercel/analytics/astro";
 interface Props {
   title: string;
   description?: string;
@@ -25,5 +26,6 @@ const { title, description = "Toronto's premiere stage for AI-enhanced storytell
     <div class="grain"></div>
     <slot />
     {import.meta.env.DEV && <TweaksPopover />}
+    <Analytics />
   </body>
 </html>
