@@ -1,16 +1,16 @@
 ---
-import MergedLayout from "../layouts/MergedLayout.astro";
-import SiteHeader from "../components/merged/SiteHeader.astro";
-import Hero from "../components/merged/Hero.astro";
-import Pillars from "../components/merged/Pillars.astro";
-import Manifesto from "../components/merged/Manifesto.astro";
-import Blog from "../components/merged/Blog.astro";
-import CommunityCTA from "../components/merged/CommunityCTA.astro";
-import SiteFooter from "../components/merged/SiteFooter.astro";
-import "../styles/merged.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import Pillars from "../components/Pillars.astro";
+import Manifesto from "../components/Manifesto.astro";
+import Blog from "../components/Blog.astro";
+import CommunityCTA from "../components/CommunityCTA.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/global.css";
 ---
 
-<MergedLayout title="GenTO - Toronto's premiere stage for AI‑enhanced storytelling">
+<BaseLayout title="GenTO - Toronto's premiere stage for AI‑enhanced storytelling">
   <SiteHeader active="home" />
   <Hero />
   <Pillars />
@@ -18,4 +18,4 @@ import "../styles/merged.css";
   <Blog />
   <CommunityCTA />
   <SiteFooter />
-</MergedLayout>
+</BaseLayout>

@@ -1,14 +1,14 @@
 ---
-import MergedLayout from "../../layouts/MergedLayout.astro";
-import SiteHeader from "../../components/merged/SiteHeader.astro";
-import SiteFooter from "../../components/merged/SiteFooter.astro";
-import SubHeader from "../../components/merged/SubHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SubHeader from "../../components/SubHeader.astro";
 import NextMeetup from "../../components/meetups/NextMeetup.astro";
 import Archive from "../../components/meetups/Archive.astro";
 import MeetupsCTA from "../../components/meetups/MeetupsCTA.astro";
-import "../../styles/merged.css";
+import "../../styles/global.css";
 ---
-<MergedLayout title="GenTO Monthly Meetups — Cinema, Evolved">
+<BaseLayout title="GenTO Monthly Meetups — Cinema, Evolved">
   <SiteHeader active="meetups" />
   <SubHeader
     eyebrow="GenTO"
@@ -25,4 +25,4 @@ import "../../styles/merged.css";
   <Archive />
   <MeetupsCTA />
   <SiteFooter />
-</MergedLayout>
+</BaseLayout>

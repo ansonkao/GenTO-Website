@@ -1,8 +1,8 @@
 ---
-import MergedLayout from "../../layouts/MergedLayout.astro";
-import SiteHeader from "../../components/merged/SiteHeader.astro";
-import SiteFooter from "../../components/merged/SiteFooter.astro";
-import SubHeader from "../../components/merged/SubHeader.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SubHeader from "../../components/SubHeader.astro";
 import CountdownBanner from "../../components/festival/CountdownBanner.astro";
 import FestivalHero from "../../components/festival/FestivalHero.astro";
 import Programme from "../../components/festival/Programme.astro";
@@ -11,7 +11,7 @@ import Awards from "../../components/festival/Awards.astro";
 import Jury from "../../components/festival/Jury.astro";
 import Venue from "../../components/festival/Venue.astro";
 import Submit from "../../components/festival/Submit.astro";
-import "../../styles/merged.css";
+import "../../styles/global.css";
 
 const meta = [
   { k: "Dates", v: "DEC 5, 2026", accent: "var(--magenta)" },
@@ -20,7 +20,7 @@ const meta = [
   { k: "Edition", v: "001 · Inaugural", accent: "var(--ink)" },
 ];
 ---
-<MergedLayout title="GenTO Film Festival — Cinema, Evolved">
+<BaseLayout title="GenTO Film Festival — Cinema, Evolved">
   <SiteHeader active="festival" />
   <SubHeader
     eyebrow="GenTO presents"
@@ -44,4 +44,4 @@ const meta = [
   <Venue />
   <Submit />
   <SiteFooter />
-</MergedLayout>
+</BaseLayout>

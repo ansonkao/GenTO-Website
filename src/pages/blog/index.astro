@@ -1,14 +1,14 @@
 ---
-import MergedLayout from "../../layouts/MergedLayout.astro";
-import SiteHeader from "../../components/merged/SiteHeader.astro";
-import Blog from "../../components/merged/Blog.astro";
-import SiteFooter from "../../components/merged/SiteFooter.astro";
-import "../../styles/merged.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import Blog from "../../components/Blog.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import "../../styles/global.css";
 ---
 
-<MergedLayout title="Journal — GenTO">
+<BaseLayout title="Journal — GenTO">
   <SiteHeader active="updates" />
   <div style="padding-top:100px;"></div>
   <Blog showAllPosts={false} />
   <SiteFooter />
-</MergedLayout>
+</BaseLayout>

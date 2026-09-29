@@ -1,8 +1,8 @@
 ---
-import MergedLayout from "../../layouts/MergedLayout.astro";
-import SiteHeader from "../../components/merged/SiteHeader.astro";
-import SiteFooter from "../../components/merged/SiteFooter.astro";
-import "../../styles/merged.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import "../../styles/global.css";
 
 const post = {
   title: "We're LIVE! Now accepting submissions.",
@@ -12,7 +12,7 @@ const post = {
 };
 ---
 
-<MergedLayout title={`${post.title} — GenTO`}>
+<BaseLayout title={`${post.title} — GenTO`}>
   <SiteHeader active="updates" />
 
   <article style="padding-top:160px;padding-bottom:120px;">
@@ -58,4 +58,4 @@ const post = {
   </article>
 
   <SiteFooter />
-</MergedLayout>
+</BaseLayout>
