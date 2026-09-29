@@ -1,0 +1,87 @@
+---
+const people = [
+  {
+    name: "Bianca Tse",
+    kind: "Jury Member",
+    role: "Digital Creator · Educator",
+    photo: "/people/bianca-tse.jpg",
+    bio: "Hong Kong-born digital creator exploring personal memory, collective history, and AI. Her ongoing project Walled City Wildest Dreams reimagines Hong Kong's City of Darkness through history, imagination, and experimental AI documentary. She also lectures at the University of Hong Kong's School of Future Media.",
+  },
+  {
+    name: "Roxanne Ducharme",
+    kind: "Jury Member",
+    role: "Filmmaker · Animator · Illustrator",
+    photo: "/people/roxanne-ducharme.jpg",
+    bio: "Award-winning filmmaker, illustrator, and animator bringing 40 years of traditional animation experience to AI filmmaking. Her credits span major studio features, Oscar- and BAFTA-nominated projects, and Emmy-winning television. She was also named one of Leonardo.Ai's Top 50 Women AI Filmmakers.",
+  },
+  {
+    name: "Fred Fuchs",
+    kind: "Jury Member",
+    role: "Producer · Former President, American Zoetrope",
+    photo: "/people/fred-fuchs.jpg",
+    bio: "Film and television producer, former President of Francis Ford Coppola's American Zoetrope, and former CBC executive, with more than 45 years of experience. His credits include The Godfather Part III and Bram Stoker's Dracula, and his productions have received 11 Academy Award nominations and four Emmy Award nominations.",
+  },
+  {
+    name: "Odair Faléco",
+    kind: "Jury Member",
+    role: "Multidisciplinary Artist · AI Filmmaker",
+    photo: "/people/odair-faleco.jpg",
+    bio: "Brazilian multidisciplinary artist and award-winning AI filmmaker based in Prague. He is the founder of zero1cine and president of the Czech International AI Film Festival. His work explores storytelling, technology, and visual culture, earning recognition including Best AI Film at the 30th BIFAN in South Korea.",
+  },
+  {
+    name: "Robert Gaudette",
+    kind: "Speaker",
+    role: "Filmmaker · Former Photographer",
+    photo: "/people/robert-gaudette.jpg",
+    bio: "A Canadian filmmaker and former photographer whose work blends generative AI with deeply human storytelling.",
+    note: "Reply AI Film Festival, Venice — A Face Only a Mother Could Love",
+  },
+];
+
+const KIND_COLOR: Record<string, string> = {
+  "Jury Member": "var(--magenta)",
+  Speaker: "var(--cyan)",
+};
+---
+<section id="jury" class="section" style="border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="jury-head">
+      <div>
+        <span class="eyebrow">The Conversation</span>
+        <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(36px, 4.5vw, 56px);letter-spacing:-0.025em;font-weight:500;line-height:1;">
+          Jury Members <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">& Speakers.</span>
+        </h2>
+      </div>
+      <p style="max-width:420px;font-size:15px;line-height:1.6;color:var(--ink-dim);">
+        Films are judged by filmmakers, producers, and artists working at the edge of AI and cinema. More to be announced shortly.
+      </p>
+    </div>
+
+    <div class="jury-grid">
+      {people.map((p, i) => (
+        <article class="jury-card">
+          <div class="jury-portrait">
+            <img src={p.photo} alt={p.name} width="800" height="800" loading="lazy" decoding="async" />
+            <div class="jury-portrait-idx">[ {String(i + 1).padStart(3, "0")} ]</div>
+          </div>
+          <div class="jury-card-body">
+            <div style={`font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:${KIND_COLOR[p.kind]};margin-bottom:14px;`}>
+              {p.kind}
+            </div>
+            <h3 style="font-family:var(--font-display);font-size:24px;letter-spacing:-0.015em;font-weight:500;line-height:1.1;">
+              {p.name}
+            </h3>
+            <div class="jury-role">{p.role}</div>
+            <p style="margin-top:16px;color:var(--ink-dim);font-size:14px;line-height:1.55;">{p.bio}</p>
+            {p.note && (
+              <div class="jury-laurel">
+                <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--yellow);">◆ LATEST WIN</span>
+                <span style="font-size:13px;line-height:1.5;color:var(--ink);">{p.note}</span>
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
