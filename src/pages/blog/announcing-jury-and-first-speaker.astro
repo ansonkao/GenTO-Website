@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import "../../styles/global.css";
+
+const post = {
+  title: "Announcing our judges and first speaker",
+  date: "September 8, 2026",
+  author: "Programming",
+  read: "3 min",
+};
+
+const jury = [
+  {
+    name: "Bianca Tse",
+    photo: "/people/bianca-tse.jpg",
+    bio: "Hong Kong-born digital creator exploring personal memory, collective history, and AI. Her ongoing project Walled City Wildest Dreams reimagines Hong Kong's City of Darkness through history, imagination, and experimental AI documentary. She also lectures at the University of Hong Kong's School of Future Media.",
+  },
+  {
+    name: "Roxanne Ducharme",
+    photo: "/people/roxanne-ducharme.jpg",
+    bio: "Award-winning filmmaker, illustrator, and animator bringing 40 years of traditional animation experience to AI filmmaking. Her credits span major studio features, Oscar- and BAFTA-nominated projects, and Emmy-winning television. She was also named one of Leonardo.Ai's Top 50 Women AI Filmmakers.",
+  },
+  {
+    name: "Fred Fuchs",
+    photo: "/people/fred-fuchs.jpg",
+    bio: "Film and television producer, former President of Francis Ford Coppola's American Zoetrope, and former CBC executive, with more than 45 years of experience. His credits include The Godfather Part III and Bram Stoker's Dracula, and his productions have received 11 Academy Award nominations and four Emmy Award nominations.",
+  },
+  {
+    name: "Odair Faléco",
+    photo: "/people/odair-faleco.jpg",
+    bio: "Brazilian multidisciplinary artist and award-winning AI filmmaker based in Prague. He is the founder of zero1cine and president of the Czech International AI Film Festival. His work explores storytelling, technology, and visual culture, earning recognition including Best AI Film at the 30th BIFAN in South Korea.",
+  },
+];
+
+const TICKETS = "https://www.eventbrite.ca/e/gento-toronto-ai-film-festival-tickets-1999269801796";
+const SUBMIT = "https://filmfreeway.com/gentoaifilmfestival";
+const PARTNER = "mailto:festival@gento.ca?subject=Sponsorship%20Inquiry%20-%20GenTO%20Toronto%20AI%20Film%20Festival";
+---
+
+<BaseLayout title={`${post.title} — GenTO`}>
+  <SiteHeader active="updates" />
+
+  <article style="padding-top:160px;padding-bottom:120px;">
+    <div class="container" style="max-width:780px;padding:0 40px;">
+      <!-- Meta -->
+      <div style="display:flex;gap:16px;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:24px;">
+        <span style="color:var(--cyan);">Festival</span>
+        <span>·</span>
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.read}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-display);font-size:clamp(36px,5vw,56px);letter-spacing:-0.025em;font-weight:500;line-height:1.1;margin-bottom:48px;text-wrap:balance;">
+        Announcing the judges and our first{" "}
+        <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">speaker.</span>
+      </h1>
+
+      <!-- Body -->
+      <div style="font-size:18px;line-height:1.75;color:var(--ink-dim);">
+        <p>
+          On December 5, 2026, we're bringing our inaugural edition to Innis Town Hall in Toronto to celebrate storytelling, imagination, and the possibilities of AI in cinema.
+        </p>
+
+        <!-- Jury -->
+        <h2 style="margin-top:56px;font-family:var(--font-display);font-size:28px;letter-spacing:-0.02em;font-weight:500;line-height:1.15;color:var(--ink);">
+          The jury
+        </h2>
+
+        {jury.map((p) => (
+          <div class="post-person">
+            <img
+              src={p.photo}
+              alt={p.name}
+              width="800"
+              height="800"
+              loading="lazy"
+              decoding="async"
+              class="post-person-photo"
+            />
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:20px;letter-spacing:-0.015em;font-weight:500;line-height:1.2;color:var(--ink);">
+                {p.name}
+              </h3>
+              <p style="margin-top:8px;font-size:16px;line-height:1.65;">{p.bio}</p>
+            </div>
+          </div>
+        ))}
+
+        <!-- Speaker -->
+        <h2 style="margin-top:56px;font-family:var(--font-display);font-size:28px;letter-spacing:-0.02em;font-weight:500;line-height:1.15;color:var(--ink);">
+          Our first speaker
+        </h2>
+
+        <div class="post-person">
+          <img
+            src="/people/robert-gaudette.jpg"
+            alt="Robert Gaudette"
+            width="800"
+            height="800"
+            loading="lazy"
+            decoding="async"
+            class="post-person-photo"
+          />
+          <div>
+            <h3 style="font-family:var(--font-display);font-size:20px;letter-spacing:-0.015em;font-weight:500;line-height:1.2;color:var(--ink);">
+              Robert Gaudette
+            </h3>
+            <p style="margin-top:8px;font-size:16px;line-height:1.65;">
+              A Canadian filmmaker and former photographer whose work blends generative AI with deeply human storytelling. Huge congratulations to Robert on his latest win at the Reply AI Film Festival in Venice for <span style="font-family:var(--font-serif);font-style:italic;">A Face Only a Mother Could Love</span>.
+            </p>
+          </div>
+        </div>
+
+        <p style="margin-top:40px;">
+          More jury members and speakers will be announced ahead of the festival. You can{" "}
+          <a href="/festival#jury" style="color:var(--cyan);text-decoration:underline;">meet everyone on the festival page</a>.
+        </p>
+
+        <!-- Calls to action -->
+        <h2 style="margin-top:56px;font-family:var(--font-display);font-size:28px;letter-spacing:-0.02em;font-weight:500;line-height:1.15;color:var(--ink);">
+          Be part of it
+        </h2>
+
+        <p style="margin-top:20px;">
+          <strong style="color:var(--ink);font-weight:500;">Early bird tickets are now available.</strong>{" "}
+          Get yours on <a href={TICKETS} target="_blank" rel="noopener noreferrer" style="color:var(--cyan);text-decoration:underline;">Eventbrite</a>.
+        </p>
+
+        <p style="margin-top:20px;">
+          <strong style="color:var(--ink);font-weight:500;">There's still time to submit your film.</strong>{" "}
+          We'd love to see what you're creating — submit on <a href={SUBMIT} target="_blank" rel="noopener noreferrer" style="color:var(--cyan);text-decoration:underline;">FilmFreeway</a>.
+        </p>
+
+        <p style="margin-top:20px;">
+          <strong style="color:var(--ink);font-weight:500;">We're looking for partners.</strong>{" "}
+          If your company or organization wants to support filmmakers and be part of this growing creative community,{" "}
+          <a href={PARTNER} style="color:var(--cyan);text-decoration:underline;">send us a message</a>. Let's talk.
+        </p>
+
+        <p style="margin-top:20px;">
+          <strong style="color:var(--ink);font-weight:500;">...and volunteers!</strong>{" "}
+          It's going to be a big event, and we need your help. If you're interested in volunteering,{" "}
+          <a href="/volunteer" style="color:var(--cyan);text-decoration:underline;">please get in touch here</a>.
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:40px;">
+          <a class="btn btn-primary glitch-hover" href={TICKETS} target="_blank" rel="noopener noreferrer">Get Passes →</a>
+          <a class="btn btn-ghost" href={SUBMIT} target="_blank" rel="noopener noreferrer">Submit a Film ↗</a>
+        </div>
+      </div>
+
+      <!-- Back link -->
+      <div style="margin-top:64px;padding-top:28px;border-top:1px solid var(--line);">
+        <a href="/blog" class="btn btn-ghost" style="font-size:11px;">← Back to journal</a>
+      </div>
+    </div>
+  </article>
+
+  <SiteFooter />
+</BaseLayout>

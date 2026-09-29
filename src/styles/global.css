@@ -287,6 +287,26 @@ button { font-family: inherit; background: none; border: 0; color: inherit; curs
 /* --- Blog cards --- */
 .blog-card { transition: border-color 0.3s; }
 .blog-card:hover { border-color: var(--line-bright); }
+
+/* Person entry inside a journal post (jury / speaker announcements) */
+.post-person {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 32px;
+}
+.post-person-photo {
+  flex: 0 0 auto;
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  filter: grayscale(1) contrast(1.05);
+}
+@media (max-width: 540px) {
+  .post-person { gap: 16px; }
+  .post-person-photo { width: 64px; height: 64px; }
+}
 @media (max-width: 900px) {
   .blog-grid { grid-template-columns: 1fr !important; }
 }
