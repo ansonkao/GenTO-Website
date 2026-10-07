@@ -1,0 +1,79 @@
+---
+const PASSES = "https://www.eventbrite.ca/e/gento-toronto-ai-film-festival-tickets-1999269801796?source=gento.ca/banner";
+---
+<aside class="ticket-banner" id="ticket-banner" aria-label="Passes announcement" hidden>
+  <div class="ticket-banner-inner">
+    <p class="ticket-banner-text">
+      <span class="ticket-banner-dot" aria-hidden="true"></span>
+      Passes now on sale!
+    </p>
+    <a class="ticket-banner-cta" href={PASSES} target="_blank" rel="noopener noreferrer">
+      Get Passes ↗
+    </a>
+  </div>
+  <button class="ticket-banner-close" id="ticket-banner-close" aria-label="Close banner">×</button>
+</aside>
+
+<style>
+  .ticket-banner {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px 72px 16px 40px;
+    background: var(--magenta);
+    box-shadow: 0 -8px 32px rgba(0,0,0,0.55);
+    color: #000;
+    font-family: var(--font-mono); font-size: 18px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .ticket-banner[hidden] { display: none; }
+  .ticket-banner-inner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 28px; flex-wrap: wrap;
+  }
+  .ticket-banner-text { color: #fff; display: flex; align-items: center; gap: 14px; margin: 0; }
+  .ticket-banner-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.35);
+    animation: ticket-banner-rec 1.4s ease-in-out infinite;
+  }
+  @keyframes ticket-banner-rec {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticket-banner-dot { animation: none; }
+  }
+  .ticket-banner-cta {
+    padding: 14px 24px;
+    background: #fff; color: #000; border: none;
+    font-size: 14px; letter-spacing: 0.14em;
+    transition: background .2s, color .2s;
+  }
+  .ticket-banner-cta:hover { background: var(--yellow); color: #000; }
+  .ticket-banner-close {
+    position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px; font-size: 28px; line-height: 1;
+    color: #000; transition: opacity .2s;
+  }
+  .ticket-banner-close:hover { opacity: 0.6; }
+  @media (max-width: 640px) {
+    .ticket-banner { padding: 14px 52px 14px 16px; font-size: 15px; }
+    .ticket-banner-inner { gap: 12px; }
+    .ticket-banner-cta { font-size: 12px; padding: 10px 16px; }
+    .ticket-banner-close { right: 8px; }
+  }
+</style>
+
+<script>
+  const KEY = "gento-passes-banner-dismissed";
+  const banner = document.getElementById("ticket-banner");
+  const close = document.getElementById("ticket-banner-close");
+  let dismissed = false;
+  try { dismissed = localStorage.getItem(KEY) === "1"; } catch {}
+  if (banner && !dismissed) banner.hidden = false;
+  close?.addEventListener("click", () => {
+    if (banner) banner.hidden = true;
+    try { localStorage.setItem(KEY, "1"); } catch {}
+  });
+</script>
