@@ -32,6 +32,7 @@ const palettes = [
 const p = palettes[bgSeed % palettes.length];
 
 const hasTitleSlot = Astro.slots.has('title');
+const hasEyebrowSlot = Astro.slots.has('eyebrow');
 
 const headerStyle = [
   "position:relative",
@@ -67,11 +68,11 @@ const headerStyle = [
   ></div>
 
   <div class="container" style="position:relative;z-index:10;">
-    {eyebrow && (
+    {(eyebrow || hasEyebrowSlot) && (
       <div
-        style="font-family:var(--font-serif);font-style:italic;letter-spacing:-0.01em;color:#ffffff;margin-bottom:12px;font-weight:500;font-size:36px;"
+        style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--font-serif);font-style:italic;letter-spacing:-0.01em;color:#ffffff;margin-bottom:12px;font-weight:500;font-size:36px;"
       >
-        {eyebrow}
+        <slot name="eyebrow">{eyebrow}</slot>
       </div>
     )}
 

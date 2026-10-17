@@ -1,0 +1,7 @@
+---
+interface Props { height?: number; }
+const { height = 36 } = Astro.props;
+---
+<a href="https://magnific.com/?utm_source=gento.ca" target="_blank" rel="noopener noreferrer" aria-label="Magnific" style="display:inline-block;line-height:0;">
+  <img src="/magnific-logo.png" alt="Magnific" width={Math.round(height * 2000 / 328)} height={height} style={`height:${height}px;width:auto;display:block;`} />
+</a>

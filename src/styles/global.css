@@ -97,10 +97,10 @@ button { font-family: inherit; background: none; border: 0; color: inherit; curs
 .header-cta {
   font-family: var(--font-mono); font-size: 11px;
   letter-spacing: 0.16em; text-transform: uppercase;
-  padding: 11px 18px; border: 1px solid #ffffff;
-  color: var(--ink); transition: all .2s;
+  padding: 11px 18px; border: 1px solid var(--magenta);
+  background: var(--magenta); color: #ffffff; transition: all .2s;
 }
-.header-cta:hover { border-color: var(--cyan); color: var(--cyan); }
+.header-cta:hover { background: var(--yellow); border-color: var(--yellow); color: #0b0510; }
 .site-nav-wrap { display: contents; }
 .menu-toggle {
   display: none;
@@ -167,6 +167,7 @@ button { font-family: inherit; background: none; border: 0; color: inherit; curs
   display: inline-flex; align-items: center; gap: 12px;
 }
 .eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--magenta); }
+.eyebrow.no-rule::before { display: none; }
 
 /* --- Halos & glitch --- */
 .halo {
@@ -491,33 +492,37 @@ button { font-family: inherit; background: none; border: 0; color: inherit; curs
   margin-bottom: 56px;
   gap: 32px;
 }
-.awards-grid {
+.awards-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--line);
-}
-.award-card {
-  padding: 32px;
-  background: var(--bg);
-  min-height: 220px;
-  position: relative;
-}
-.awards-footer {
-  margin-top: 32px;
-  padding: 28px;
-  border: 1px dashed var(--line-bright);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
+  align-items: start;
 }
+.awards-sponsor {
+  position: sticky; top: 100px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.awards-list { border: 1px solid var(--line); background: var(--bg); }
+.award-row { padding: 28px 32px; }
+.award-row + .award-row { border-top: 1px solid var(--line); }
+.award-prizes { margin-top: 20px; border: 1px solid var(--line); background: var(--bg-2); }
+.award-prize {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  align-items: baseline;
+}
+.award-prize + .award-prize { border-top: 1px solid var(--line); }
 @media (max-width: 900px) {
-  .awards-grid { grid-template-columns: 1fr; }
-  .award-card {
-    border-right: none !important;
-    border-bottom: 1px solid var(--line) !important;
-  }
-  .award-card:last-child { border-bottom: none !important; }
-  .awards-footer { grid-template-columns: 1fr; gap: 24px; }
+  .awards-layout { grid-template-columns: 1fr; gap: 24px; }
+  .awards-sponsor { position: static; }
+}
+@media (max-width: 540px) {
+  .award-row { padding: 24px 20px; }
+  .awards-sponsor { padding: 24px 20px; }
 }
 
 .jury-head {

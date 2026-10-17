@@ -70,10 +70,10 @@ const PASSES = "https://www.eventbrite.ca/e/gento-toronto-ai-film-festival-ticke
   const banner = document.getElementById("ticket-banner");
   const close = document.getElementById("ticket-banner-close");
   let dismissed = false;
-  try { dismissed = localStorage.getItem(KEY) === "1"; } catch {}
+  try { dismissed = sessionStorage.getItem(KEY) === "1"; } catch {}
   if (banner && !dismissed) banner.hidden = false;
   close?.addEventListener("click", () => {
     if (banner) banner.hidden = true;
-    try { localStorage.setItem(KEY, "1"); } catch {}
+    try { sessionStorage.setItem(KEY, "1"); } catch {}
   });
 </script>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import MagnificLogo from "../../components/MagnificLogo.astro";
+import "../../styles/global.css";
+
+const post = {
+  title: "Magnific is our Presenting Sponsor",
+  date: "October 17, 2026",
+  author: "Partnerships",
+  read: "1 min",
+};
+
+const prizes = [
+  { medal: "🥇", place: "First place", prize: "1 year of Magnific Premium Plus" },
+  { medal: "🥈", place: "Second place", prize: "6 months of Magnific Premium Plus" },
+  { medal: "🥉", place: "Third place", prize: "2 months of Magnific Premium Plus" },
+];
+
+const MAGNIFIC = "https://magnific.com/?utm_source=gento.ca";
+const TICKETS = "https://www.eventbrite.ca/e/gento-toronto-ai-film-festival-tickets-1999269801796";
+---
+
+<BaseLayout title={`${post.title} — GenTO`}>
+  <SiteHeader active="updates" />
+
+  <article style="padding-top:160px;padding-bottom:120px;">
+    <div class="container" style="max-width:780px;padding:0 40px;">
+      <!-- Meta -->
+      <div style="display:flex;gap:16px;align-items:center;font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:24px;">
+        <span style="color:var(--yellow);">Festival</span>
+        <span>·</span>
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.read}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-display);font-size:clamp(36px,5vw,56px);letter-spacing:-0.025em;font-weight:500;line-height:1.1;margin-bottom:48px;text-wrap:balance;">
+        Magnific is our Presenting{" "}
+        <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">Sponsor.</span>
+      </h1>
+
+      <!-- Body -->
+      <div style="font-size:18px;line-height:1.75;color:var(--ink-dim);">
+        <div style="margin-bottom:40px;">
+          <MagnificLogo />
+        </div>
+
+        <p>
+          We are proud to announce <a href={MAGNIFIC} target="_blank" rel="noopener noreferrer" style="color:var(--cyan);text-decoration:underline;">Magnific</a> as the Presenting Sponsor of the GenTO: Toronto AI Film Festival! 🎬
+        </p>
+
+        <p style="margin-top:20px;">
+          Magnific is an incredible platform for AI creators and filmmakers, and many of us at GenTO are proud users of it ourselves. We couldn't be more excited to have them on board.
+        </p>
+
+        <!-- Prizes -->
+        <h2 style="margin-top:56px;font-family:var(--font-display);font-size:28px;letter-spacing:-0.02em;font-weight:500;line-height:1.15;color:var(--ink);">
+          Prizes for Best AI Short Film
+        </h2>
+
+        <p style="margin-top:20px;">
+          Magnific is also supporting our filmmakers with prizes for Best AI Short Film:
+        </p>
+
+        <ul style="margin-top:20px;list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;">
+          {prizes.map((p) => (
+            <li>
+              <span aria-hidden="true">{p.medal}</span>{" "}
+              <strong style="color:var(--ink);font-weight:500;">{p.place}:</strong> {p.prize}
+            </li>
+          ))}
+        </ul>
+
+        <p style="margin-top:40px;">
+          Join us on December 5, 2026, at Innis Town Hall to celebrate creativity and storytelling in AI filmmaking.
+        </p>
+
+        <p style="margin-top:20px;">
+          Thank you, Magnific, for helping bring the GenTO: Toronto AI Film Festival to life!
+        </p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:40px;">
+          <a class="btn btn-primary glitch-hover" href={TICKETS} target="_blank" rel="noopener noreferrer">Buy Passes ↗</a>
+          <a class="btn btn-ghost" href={MAGNIFIC} target="_blank" rel="noopener noreferrer">Visit Magnific ↗</a>
+        </div>
+      </div>
+
+      <!-- Back link -->
+      <div style="margin-top:64px;padding-top:28px;border-top:1px solid var(--line);">
+        <a href="/blog" class="btn btn-ghost" style="font-size:11px;">← Back to journal</a>
+      </div>
+    </div>
+  </article>
+
+  <SiteFooter />
+</BaseLayout>

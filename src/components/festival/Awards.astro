@@ -1,54 +1,79 @@
 ---
+import MagnificLogo from "../MagnificLogo.astro";
+
+const MAGNIFIC = "https://magnific.com/?utm_source=gento.ca";
+
 const cats = [
-  { name: "Best AI Short Film", desc: "Recognizing an outstanding short film that demonstrates strong storytelling, cinematic craft, and thoughtful use of AI-enhanced production tools.", c: "var(--magenta)" },
+  {
+    name: "Best AI Short Film",
+    desc: "Recognizing an outstanding short film that demonstrates strong storytelling, cinematic craft, and thoughtful use of AI-enhanced production tools.",
+    c: "var(--magenta)",
+    prizes: [
+      { place: "1st", prize: "1 year of Magnific Premium Plus" },
+      { place: "2nd", prize: "6 months of Magnific Premium Plus" },
+      { place: "3rd", prize: "2 months of Magnific Premium Plus" },
+    ],
+  },
   { name: "Best AI Showcase Film", desc: "Honouring a standout work that boldly demonstrates the creative possibilities of generative filmmaking and new cinematic forms.", c: "var(--cyan)" },
   { name: "Technical Achievement Award", desc: "Recognizing exceptional innovation in the use of AI tools, workflows, visual design, sound, editing, or production methodology.", c: "var(--yellow)" },
   { name: "Best Canadian Film", desc: "Celebrating an outstanding AI-enhanced film by a Canadian filmmaker or Canadian creative team.", c: "var(--magenta)" },
   { name: "Best Emerging Filmmaker", desc: "Recognizing a promising new voice whose work shows originality, ambition, and a strong creative vision.", c: "var(--cyan)" },
 ];
 ---
-<section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);">
-  <div class="container">
+<section class="section" style="background:var(--bg-2);border-bottom:1px solid var(--line);position:relative;overflow:clip;">
+  <div class="halo" style="width:600px;height:600px;background:var(--magenta);top:-120px;left:-160px;opacity:0.25;"></div>
+  <div class="halo" style="width:560px;height:560px;background:var(--cyan);bottom:-160px;right:-120px;opacity:0.2;"></div>
+  <div class="container" style="position:relative;">
     <div class="awards-head">
       <div>
         <span class="eyebrow">Awards & Prizes</span>
         <h2 style="margin-top:18px;font-family:var(--font-display);font-size:clamp(36px, 4.5vw, 56px);letter-spacing:-0.025em;font-weight:500;line-height:1;">
-          Five laurels. <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">One weekend.</span>
+          Five laurels. <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;">One night.</span>
         </h2>
       </div>
       <img src="/gento-laurel.svg" alt="GenTO Laurel" style="flex:0 0 auto;width:120px;height:auto;" />
     </div>
 
-    <div class="awards-grid">
-      {cats.map((c, i) => {
-        const borderRight = (i % 3) < 2 ? "1px solid var(--line)" : "none";
-        const borderBottom = i < (cats.length - 3) ? "1px solid var(--line)" : "none";
-        return (
-          <div class="award-card" style={`border-right:${borderRight};border-bottom:${borderBottom};`}>
-            <div style={`font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:${c.c};margin-bottom:18px;`}>
+    <div class="awards-layout">
+      <aside class="awards-sponsor">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:18px;">Presenting Sponsor</div>
+        <MagnificLogo />
+        <p style="margin-top:24px;font-size:16px;line-height:1.65;color:var(--ink-dim);text-wrap:pretty;">
+          GenTO is honoured to recognize Magnific as the Presenting Sponsor of the inaugural Toronto AI Film Festival. A creative platform trusted by AI artists and filmmakers worldwide, Magnific will award prizes to the top three films in the <strong style="color:var(--ink);font-weight:500;">Best AI Short Film</strong> category.
+        </p>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn btn-ghost" href={MAGNIFIC} target="_blank" rel="noopener noreferrer">Visit Magnific ↗</a>
+          <a class="btn btn-ghost" href="/blog/magnific-presenting-sponsor">Read the announcement →</a>
+        </div>
+      </aside>
+
+      <div class="awards-list">
+        {cats.map((c, i) => (
+          <div class="award-row">
+            <div style={`font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:${c.c};margin-bottom:14px;`}>
               AWARD {String(i + 1).padStart(2, "0")}
             </div>
-            <h3 style="font-family:var(--font-display);font-size:26px;letter-spacing:-0.015em;margin-bottom:14px;font-weight:500;">
-              {c.name}
-            </h3>
-            <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;">{c.desc}</p>
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:26px;letter-spacing:-0.015em;margin-bottom:10px;font-weight:500;">
+                {c.name}
+              </h3>
+              <p style="color:var(--ink-dim);font-size:14px;line-height:1.55;">{c.desc}</p>
+              {c.prizes && (
+                <div class="award-prizes">
+                  <div style="padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-dim);">
+                    Prizes from Magnific
+                  </div>
+                  {c.prizes.map((p) => (
+                    <div class="award-prize">
+                      <span style="font-family:var(--font-mono);font-size:13px;color:var(--yellow);">{p.place}</span>
+                      <span style="font-size:15px;">{p.prize}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        );
-      })}
-    </div>
-
-    <div class="awards-footer">
-      <div>
-        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--yellow);margin-bottom:10px;">/ PRIZES</div>
-        <p style="font-size:15px;line-height:1.6;color:var(--ink-dim);">
-          Winners receive festival recognition, official laurels, and select prizes provided by GenTO and its partners. In-kind support, mentorship opportunities, and technology credits may be awarded depending on the category. Full details announced closer to the festival.
-        </p>
-      </div>
-      <div>
-        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;color:var(--cyan);margin-bottom:10px;">/ ANNOUNCEMENT</div>
-        <p style="font-size:15px;line-height:1.6;color:var(--ink-dim);">
-          Awards are presented during the closing ceremony on Dec 6. Select winners may be invited to a live Q&A or a behind-the-scenes discussion of their work.
-        </p>
+        ))}
       </div>
     </div>
   </div>

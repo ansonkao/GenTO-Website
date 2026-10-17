@@ -4,6 +4,7 @@ import SiteHeader from "../../components/SiteHeader.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SubHeader from "../../components/SubHeader.astro";
 import CountdownBanner from "../../components/festival/CountdownBanner.astro";
+import MagnificLogo from "../../components/MagnificLogo.astro";
 import FestivalHero from "../../components/festival/FestivalHero.astro";
 import Programme from "../../components/festival/Programme.astro";
 import Ethos from "../../components/festival/Ethos.astro";
@@ -23,9 +24,8 @@ const meta = [
 <BaseLayout title="GenTO Film Festival — Cinema, Evolved">
   <SiteHeader active="festival" />
   <SubHeader
-    eyebrow="GenTO presents"
     title="Toronto AI Film Festival"
-    lede="A two-day celebration of AI-enhanced storytelling at Innis Town Hall Theatre, University of Toronto. Short films, panels, demos, and awards for bold new cinema — local and international."
+    lede="A full-day celebration of AI-enhanced storytelling at Innis Town Hall Theatre, University of Toronto. Short films, panels, demos, and awards for bold new cinema — local and international."
     meta={meta}
     accent="var(--magenta)"
     bgSeed={0}
@@ -34,6 +34,7 @@ const meta = [
     fullHeight
     ledeHideMobile
   >
+    <Fragment slot="eyebrow"><MagnificLogo /><span>presents</span></Fragment>
     <CountdownBanner slot="bottom" />
   </SubHeader>
   <FestivalHero />
