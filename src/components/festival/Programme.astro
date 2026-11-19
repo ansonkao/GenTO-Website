@@ -8,20 +8,18 @@ const blocks = [
       { time: "11:30", title: "Doors open / registration", kind: "Welcome" },
       { time: "12:00", title: "Opening Reception — Coffee & Snacks", kind: "Reception" },
       { time: "12:30", title: "Welcome to GenTO — Opening remarks", kind: "Opening" },
-      { time: "12:40", title: "Screening Block 1 — Films, Ads & Music Videos", kind: "Screening" },
-      { time: "13:30", title: "Panel 1 — AI in Arts & Culture", kind: "Panel" },
+      { time: "12:40", title: "Screening Block 1 — AI Films, Ads & Music Videos", kind: "Screening" },
+      { time: "13:30", title: "Panel 1 — AI in Arts & Culture", guests: "Moderator Ana Serrano · Ab. Valesco · Anthea Foyer", kind: "Panel" },
       { time: "14:15", title: "Break", kind: "Break" },
-      { time: "14:30", title: "Screening Block 2 — Films, Ads & Music Videos", kind: "Screening" },
-      { time: "15:20", title: "Panel 2 — AI in VFX", kind: "Panel" },
+      { time: "14:30", title: "Screening Block 2 — AI Films, Ads & Music Videos", kind: "Screening" },
+      { time: "15:20", title: "Panel 2 — AI in VFX", guests: "Moderator Oleksii “Lex” Koba · Lisa Sepp-Wilson · Andrew MacDonald · Adam Fainman · Aden Bahadori", kind: "Panel" },
       { time: "16:05", title: "Coffee / Networking Break", kind: "Break" },
-      { time: "16:20", title: "Screening Block 3 — Films, Ads & Music Videos", kind: "Screening" },
-      { time: "17:10", title: "Panel 3 — AI for Storytelling", kind: "Panel" },
+      { time: "16:20", title: "Screening Block 3 — AI Films, Ads & Music Videos", kind: "Screening" },
+      { time: "17:10", title: "Panel 3 — AI for Storytelling", guests: "Moderator Ronit Novak · Robert Gaudette · Eva Ziemsen", kind: "Panel" },
       { time: "17:55", title: "Dinner Break", kind: "Break" },
-      { time: "18:55", title: "GenTO Final Screening Block", kind: "Screening" },
-      { time: "19:45", title: "Intermission / Awards Setup", kind: "Break" },
       { time: "20:00", title: "GenTO Awards Ceremony", kind: "Awards" },
-      { time: "20:50", title: "Closing Remarks / Group Photo", kind: "Closing" },
-      { time: "21:00", title: "Afterparty at Duke of York", kind: "Social" },
+      { time: "20:30", title: "Closing Remarks / Group Photo / Afterparty Send-off", kind: "Closing" },
+      { time: "21:00", title: "Move to Duke of York for Official GenTO Afterparty", kind: "Social" },
     ],
   }
 ];
@@ -51,7 +49,12 @@ const blocks = [
                 style={j < b.items.length - 1 ? "border-bottom:1px solid var(--line);" : ""}
               >
                 <span style="font-family:var(--font-mono);font-size:13px;color:var(--ink-dim);">{it.time}</span>
-                <span style="font-size:15px;">{it.title}</span>
+                <span style="font-size:15px;">
+                  {it.title}
+                  {it.guests && (
+                    <span style="display:block;margin-top:6px;font-size:13px;line-height:1.5;color:var(--ink-dim);">{it.guests}</span>
+                  )}
+                </span>
                 <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--yellow);justify-self:end;">
                   [ {it.kind} ]
                 </span>
